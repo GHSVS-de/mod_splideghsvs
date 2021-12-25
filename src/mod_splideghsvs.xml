@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="{{type}}" client="{{client}}" method="upgrade">
+	<name>{{nameUpper}}</name>
+	<author>{{authorName}}</author>
+	<creationDate>{{creationDate}}</creationDate>
+	<copyright>{{copyright}}</copyright>
+	<license>{{licenseLong}}</license>
+	<authorUrl>{{authorUrl}}</authorUrl>
+	<version>{{version}}</version>
+	<description>{{nameUpper}}_XML_DESCRIPTION</description>
+
+	<updateservers><server type="extension" priority="1" name="{{nameUpper}}">https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/{{name}}-update.xml</server></updateservers>
+
+	<changelogurl>https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/{{name}}-changelog.xml</changelogurl>
+
+	<infourl>https://updates.ghsvs.de/changelog.php?file={{name}}</infourl>
+
+	<versionCompare>
+	https://github.com/GHSVS-de/{{name}}/compare/{{versionCompare}}...{{version}}
+	</versionCompare>
+
+	<scriptfile>installerScript.php</scriptfile>
+	<minimumPhp>{{minimumPhp}}</minimumPhp>
+	<maximumPhp>{{maximumPhp}}</maximumPhp>
+	<minimumJoomla>{{minimumJoomla}}</minimumJoomla>
+	<maximumJoomla>{{maximumJoomla}}</maximumJoomla>
+	<allowDowngrades>{{allowDowngrades}}</allowDowngrades>
+
+	<files>
+		<filename module="{{name}}">{{name}}.php</filename>
+		<filename>installerScript.php</filename>
+		<filename>LICENSE.txt</filename>
+		<folder>language</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<media folder="media" destination="{{name}}">
+		<filename>LICENSE_splide.txt</filename>
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>json</folder>
+		<folder>scss</folder>
+	</media>
+
+	<namespace path="src">Joomla\Module\SplideGhsvs</namespace>
+
+	<config>
+		<fields name="params" addfieldpath="modules/{{filename}}/src/Field">
+
+			<fieldset name="basic" addfieldpath="/plugins/system/jce/fields">
+				<field name="AssetsBe" type="modSplideGhsvs.AssetsBe"
+					loadjs="false" loadJQuery="false" loadcss="true" />
+
+<!--
+Field name="bugFix"??
+DE: Nötig, da sonst JCE-Browser 3.9.9 in Subform versagt.
+Beim Ersetzen der Felder mit type="media".
+Siehe dazu auch backend.css.
+EN: Necessary, otherwise JCE browser 3.9.9 fails in subform.
+When replacing the fields of type="media".
+See also backend.css.
+-->
+				<field name="bugFix" type="media" default=""
+					class="hideMe"
+					hiddenLabel="true"
+					label=""
+					description="" />
+
+			</fieldset><!--/basic-->
+
+			<fieldset name="createSlides"
+				label="MOD_SPLIDEGHSVS_CREATESLIDES">
+
+			<field name="fotos" type="subform" min="1" max="100" multiple="true"
+				formsource="modules/mod_splideghsvs/myforms/subform.xml"
+				layout="joomla.form.field.subform.repeatable" groupByFieldset="false"
+				label=""
+				hiddenLabel="true"
+				description="" />
+
+			</fieldset><!--/createSlides-->
+
+			<fieldset name="sliderSettings"
+				label="MOD_SPLIDEGHSVS_SLIDERSETTINGS">
+
+				<field name="sliderType" type="list" default="synced" filter="string"
+					label="MOD_SPLIDEGHSVS_SLIDERTYPE">
+					<option value="synced">MOD_SPLIDEGHSVS_SLIDERTYPE_SYNCED</option>
+				</field>
+
+				<field name="themeSpacer" type="note" close="true" class="alert"
+					label="MOD_SPLIDEGHSVS_THEME"
+					description="MOD_SPLIDEGHSVS_THEME_DESC"/>
+
+				<field name="theme" type="modSplideGhsvs.FileListRecursive"
+					default="themes/splide-default.min.css"
+					label="MOD_SPLIDEGHSVS_THEME"
+					filter="\.css$" fileFilter="\.css$"
+					hide_default="true"
+					hide_none="true"
+					directory="media/mod_splideghsvs/css/vendor/splidejs/splide">
+						<option value="0">JNONE</option>
+				</field>
+
+				<field name="customCssFileSpacer" type="note" close="true" class="alert"
+					label="MOD_SPLIDEGHSVS_CUSTOMCSSFILE"
+					description="MOD_SPLIDEGHSVS_CUSTOMCSSFILE_DESC"/>
+
+				<field type="text" name="customCssFile" filter="string" default=""
+					class="extended-width"
+					label="MOD_SPLIDEGHSVS_CUSTOMCSSFILE"
+					hint="MOD_SPLIDEGHSVS_CUSTOMCSSFILE_HINT"/>
+
+				<field name="sliderConfSpacer" type="note" close="true" class="alert"
+					label="MOD_SPLIDEGHSVS_SLIDERCONF"
+					description="MOD_SPLIDEGHSVS_SLIDERCONF_DESC"/>
+
+				<field name="sliderConf" type="modSplideGhsvs.FileListRecursive"
+					default="0"
+					label="MOD_SPLIDEGHSVS_SLIDERCONF"
+					filter="\.json$" fileFilter="\.json$"
+					hide_default="true"
+					hide_none="true"
+					directory="media/mod_splideghsvs/json/sliderConfig">
+						<option value="0">MOD_SPLIDEGHSVS_SLIDERCONF_CUSTOM</option>
+				</field>
+
+				<field type="text" name="sliderConfCustom" filter="string" default=""
+					class="extended-width"
+					label="MOD_SPLIDEGHSVS_CUSTOMJSONFILE"
+					showon="sliderConf:0"
+					hint="MOD_SPLIDEGHSVS_CUSTOMJSONFILE_HINT"/>
+
+			</fieldset><!--/sliderSettings-->
+
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field name="moduleclass_sfx" type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+					rows="3" />
+
+				<field name="cache" type="list" default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field name="cache_time" type="number" default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+
+				<field name="cachemode" type="hidden" default="static">
+					<option value="static"></option>
+				</field>
+			</fieldset><!--/advanced-->
+		</fields>
+	</config>
+</extension>

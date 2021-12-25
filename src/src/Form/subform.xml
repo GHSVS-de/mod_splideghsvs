@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<field name="foto" type="media" default=""
+ 		class="extended-width"
+ 		label="MOD_SPLIDEGHSVS_FOTO"
+		description=""
+		preview="true" />
+
+	<field name="headline" type="text" default="" filter="string"
+		class="extended-width" label="MOD_SPLIDEGHSVS_HEADLINE" />
+
+	<field name="text" type="textarea" default=""	filter="string"
+		class="extended-width"
+		rows="4" cols="180"
+		label="MOD_SPLIDEGHSVS_TEXT" />
+
+	<field name="active" type="list" default="1" filter="integer"
+		label="MOD_SPLIDEGHSVS_ACTIVE">
+		<option value="0">JNO</option>
+		<option value="1">JYES</option>
+	</field>
+
+</form>

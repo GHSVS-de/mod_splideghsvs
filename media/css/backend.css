@@ -1,0 +1,66 @@
+/* CSS Document */
+.extended-width
+{
+	min-width:90%;
+}
+form.form-validate
+{
+	padding-bottom:250px;
+}
+#attrib-createSlides .controls
+{
+	margin-left: 0;
+}
+div.subform-repeatable-group
+{
+	border-color: #000;
+	background-color: aliceblue;
+	margin-top: 5px !important;
+	padding: 10px !important;
+}
+div.subform-repeatable-group .field-media-preview
+{
+	max-width: 80px !important;
+	max-height: 80px !important;
+	margin-top: 5px !important;
+}
+div.subform-repeatable-group .field-media-preview img
+{
+	max-width: 80px !important;
+	max-height: 80px !important;
+	height: auto !important;
+}
+div.subform-repeatable-group .control-group
+{
+	margin-bottom: 5px !important;
+}
+form.form-validate .alert
+{
+    margin-bottom: 0;
+}
+
+
+
+
+/* Bugfix JCE */
+#general .field-media-wrapper
+{
+	display:none;
+}
+
+#attrib-FieldsetImageResize .control-label,
+#attrib-FieldsetOpenGraph  .control-label
+{
+	float: none;
+}
+#attrib-FieldsetImageResize .control-label label,
+#attrib-FieldsetOpenGraph .control-label label
+{
+	font-weight: bold;
+}
+#attrib-FieldsetImageResize hr
+{
+	margin: 0;
+	border-color: black;
+	min-width: 90%;
+}
