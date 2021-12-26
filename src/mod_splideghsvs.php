@@ -14,6 +14,7 @@ if (version_compare(JVERSION, '4', 'lt'))
 
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\Module\SplideGhsvs\Site\Helper\SplideGhsvsHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 $opts = null;
 $optsThumbs = null;
@@ -23,7 +24,7 @@ $slides = SplideGhsvsHelper::getSlides($params);
 
 if (is_object($slides) && count(get_object_vars($slides)))
 {
-	$imageResizer = SplideGhsvsHelper::getImageResizer();
+	/* $imageResizer = SplideGhsvsHelper::getImageResizer();
 
 	if ($imageResizer !== null)
 	{
@@ -33,14 +34,14 @@ if (is_object($slides) && count(get_object_vars($slides)))
 		{
 			$optsThumbs = \Bs3ghsvsItem::parseImageResizeOptions('w=120,quality=80,maxOnly=TRUE');
 		}
-	}
+	} */
 }
 else
 {
 	return;
 }
 
-
-
+SplideGhsvsHelper::loadCss($params);
+SplideGhsvsHelper::loadJs($params);
 
 require ModuleHelper::getLayoutPath('mod_splideghsvs', $params->get('layout', 'default'));

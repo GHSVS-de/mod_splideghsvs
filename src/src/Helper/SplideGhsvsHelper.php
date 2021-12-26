@@ -11,6 +11,8 @@ use Joomla\Filesystem\File;
 
 class SplideGhsvsHelper
 {
+	private static $loaded = [];
+
 	/**
 	 * Retrieve list of slide items from module params.
 	 *
@@ -20,8 +22,6 @@ class SplideGhsvsHelper
 	 */
 	public static function getSlides(&$params)
 	{
-		$resizePossible = false;
-
 		$slides = $params->get('fotos');
 
 		if (is_object($slides) && count(get_object_vars($slides)))
@@ -36,21 +36,12 @@ class SplideGhsvsHelper
 					continue;
 				}
 
-				$slide->headline = trim($slide->headline);
-				$slide->text = trim($slide->text);
+				$check = ['headline', 'text'];
 
-				if ($slide->headline !== '')
+				foreach ($check as $checkKey)
 				{
-					$slide->headline = htmlspecialchars(
-						$slide->headline, ENT_COMPAT, 'utf-8'
-					);
-				}
-
-				if ($slide->text !== '')
-				{
-					$slide->text = nl2br(htmlspecialchars(
-						$slide->text, ENT_COMPAT, 'utf-8'
-					));
+					$slide->$checkKey = isset($slide->$checkKey) ?
+						htmlspecialchars(trim($slide->$checkKey), ENT_COMPAT, 'utf-8') : '';
 				}
 			}
 		}
@@ -75,26 +66,30 @@ class SplideGhsvsHelper
 		return $imageResizer;
 	}
 
-	public static function loadCss($loadCss)
+	public static function loadCss(&$params)
 	{
-		if ($loadCss)
+		if ($loadCss = self::collectCss($params)['loadCss'])
 		{
 			foreach ($loadCss as $file)
 			{
-				HTMLHelper::_('stylesheet', $file, ['version' => 'auto']);
+				if (!isset(self::$loaded['css'][$file]))
+				{
+					self::$loaded['css'][$file] = 1;
+					HTMLHelper::_('stylesheet', $file,
+						['version' => self::getMediaVersion()]);
+				}
 			}
 		}
 	}
 
-	private static function collectCss(&$params, &$sliderConf)
+	private static function collectCss(&$params, &$sliderConf = [])
 	{
 		$sliderConf['loadCss'] = [];
 
-		// Can be '0'.
-		if ($theme = $params->get('theme', 'themes/splide-default.min.css'))
+		if ($theme = $params->get('theme', 'splide-core.css'))
 		{
 			$theme = HTMLHelper::_('stylesheet',
-				'mod_splideghsvs/vendor/splidejs/splide/' . $theme,
+				'mod_splideghsvs/splide/' . $theme,
 				['pathOnly' => true, 'relative' => true]);
 
 			if ($theme !== '')
@@ -122,50 +117,18 @@ class SplideGhsvsHelper
 				Factory::getApplication()->getTemplate(), $theme);
 			$sliderConf['loadCss'][] = $theme;
 		}
+
+		return $sliderConf;
 	}
 
-	public static function loadJs()
+	public static function loadJs(&$params)
 	{
-		HTMLHelper::_('script',
-			'mod_splideghsvs/vendor/splidejs/splide/splide.min.js',
-			['relative' => true, 'version' => 'auto']);
-	}
-
-	public static function loadConfiguration(&$params)
-	{
-		$sliderConf = (string) $params->get('sliderConf', '0');
-
-		if ($sliderConf === '0')
+		if (!isset(self::$loaded['js']))
 		{
-			$sliderConf = trim($params->get('sliderConfCustom', ''));
+			self::$loaded['js'] = 'mod_splideghsvs/splide/splide.min.js';
+			HTMLHelper::_('script', self::$loaded['js'],
+				['relative' => true, 'version' => self::getMediaVersion()]);
 		}
-		else
-		{
-			$sliderConf = 'media/mod_splideghsvs/json/sliderConfig/' . $sliderConf;
-		}
-
-		if ($sliderConf)
-		{
-			$extension = strtolower(
-				substr($sliderConf, strlen($sliderConf) - 5, strlen($sliderConf)));
-			$temp = File::stripExt($sliderConf);
-
-			$sliderConf = JPATH_SITE . '/' . $sliderConf;
-
-			if ($extension === '.json' && is_file($sliderConf))
-			{
-				$sliderConf = file_get_contents($sliderConf);
-
-			if (($sliderConf = self::prepareConfig($sliderConf)) !== false)
-			{
-					$sliderConf['configFile'] = $temp;
-					self::collectCss($params, $sliderConf);
-				return $sliderConf;
-			}
-		}
-		}
-
-		return false;
 	}
 
 	public static function loadInlineJs($sliderConf, $primId, $secId = null)
@@ -232,5 +195,19 @@ class SplideGhsvsHelper
 		}
 
 		return false;
+	}
+	public static function getMediaVersion()
+	{
+		if (!isset(self::$loaded['mediaVersion']))
+		{
+			if (!(self::$loaded['mediaVersion'] = file_get_contents(
+				JPATH_SITE . '/media/mod_splideghsvs/mediaVersion.txt'))
+			)
+			{
+				self::$loaded['mediaVersion'] = 'auto';
+			}
+		}
+
+		return self::$loaded['mediaVersion'];
 	}
 }
