@@ -92,6 +92,12 @@ let versionSub = '';
 		)
 	);
 
+	to = path.join(target, 'mediaVersion.txt');
+	await fse.writeFile(to, `v${versionSub}`, { encoding: "utf8" }
+	).then(
+		answer => console.log(pc.green(pc.bold(`${to} written`)))
+	);
+
 	if (!(await fse.exists("./dist")))
 	{
 		await fse.mkdir("./dist"
