@@ -43,9 +43,7 @@
 		<folder>json</folder>
 		<folder>scss</folder>
 	</media>
-
-	<namespace path="src">Joomla\Module\SplideGhsvs</namespace>
-
+	{{namespace}}
 	<config>
 		<fields name="params" addfieldpath="modules/{{filename}}/src/Field">
 

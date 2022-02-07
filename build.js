@@ -3,6 +3,7 @@ const pc = require('picocolors');
 const replaceXml = require('./build/replaceXml.js');
 const path = require('path');
 const helper = require('./build/helper.js');
+const unminify = require('./build/unminify.js');
 
 const {
 	name,
@@ -47,7 +48,7 @@ let versionSub = '';
 		)
 	);
 
-	await helper.unminifyCss(to);
+	await unminify.Css(to);
 	// ### Prepare /media/css. END
 
 	// ### JS. START
