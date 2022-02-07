@@ -11,10 +11,11 @@
 - Prepare/adapt `./package.json`.
 - `cd /mnt/z/git-kram/mod_splideghsvs`
 
-## node/npm updates/installation
-- `npm run g-npm-update-check` or (faster) `ncu`
-- `npm run g-ncu-override-json` (if needed) or (faster) `ncu -u`
-- `npm install` (if needed)
+## node/npm installation/updates
+- `npm install` (if not done yet)
+### Update
+- `npm run g-npm-update-check` or (faster) `npm outdated`
+- `npm run g-npm-update` (if needed) or (faster) `npm update --save-dev`
 
 ## Build installable ZIP package
 - `node build.js`
