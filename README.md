@@ -1,6 +1,5 @@
-# In Arbeit! Work in progress!
-
-# Nothing works correctly at the moment!
+# This is only a very rudimentarily implemented extension.
+- Only 1 slider implemented for 1 single individual site.
 
 # mod_splideghsvs
 - Joomla slider based on Splidejs / splide JS library (https://github.com/Splidejs/splide).
