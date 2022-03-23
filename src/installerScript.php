@@ -14,7 +14,11 @@ class mod_splideGhsvsInstallerScript extends InstallerScript
 	 * @var    array
 	 * @since  2.0
 	 */
-	protected $deleteFiles = [];
+	protected $deleteFiles = [
+		'/modules/mod_splideghsvs/tmpl/default_synced.php',
+		'/modules/mod_splideghsvs/tmpl/default-test.php',
+		'/modules/mod_splideghsvs/tmpl/standard001.php',
+	];
 
 	/**
 	 * A list of folders to be deleted with method removeFiles().
