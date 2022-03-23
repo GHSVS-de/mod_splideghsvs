@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2022.02.07",
-	"versionCompare": "2021.12.26",
+	"version": "2022.03.23",
+	"versionCompare": "2022.02.07",
 	"update": {
 		"type": "module",
 		"folder": "",
@@ -27,9 +27,8 @@
 		"docsEN": "",
 		"lastTests": [
 			"PHP 8.0",
-			"PHP 7.4",
 			"Joomla 4.0.6",
-			"JCE"
+			"JCE (conerning image selection)"
 		]
 	},
 	"minimumPhp": "7.4.0",
@@ -58,7 +57,8 @@
 		"joomla",
 		"site module",
 		"splidejs",
-		"slider"
+		"slider",
+		"images"
 	],
 	"private": false,
 	"description": "Joomla site module. Slider based upon JavaScript library @splidejs/splide.",
@@ -69,8 +69,8 @@
 	},
 	"scripts": {
 		"g-build": "node build.js",
-    "g-npm-update-check": "npm outdated",
-    "g-npm-update": "npm update --save-dev"
+    "update-check": "npm outdated",
+    "update": "npm update --save-dev"
 	},
 	"dependencies": {
 		"@splidejs/splide": "^3"
@@ -78,7 +78,7 @@
 	"devDependencies": {
 		"adm-zip": "0.5.9",
 		"cssunminifier": "^0.0.2",
-		"fs-extra": "10.0.0",
+		"fs-extra": "10.0.1",
 		"picocolors": "^1.0.0",
 		"recursive-readdir": "^2.2.2",
 		"rimraf": "3.0.2"
