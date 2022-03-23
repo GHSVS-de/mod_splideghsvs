@@ -36,6 +36,11 @@ class SplideGhsvsHelper
 					continue;
 				}
 
+				$wurmInfos = HTMLHelper::_('cleanImageURL', $slide->foto);
+				$slide->foto = $wurmInfos->url;
+				$slide->width = $wurmInfos->attributes['width'];
+				$slide->height = $wurmInfos->attributes['height'];
+
 				$check = ['headline', 'text'];
 
 				foreach ($check as $checkKey)
@@ -45,6 +50,7 @@ class SplideGhsvsHelper
 				}
 			}
 		}
+
 		return $slides;
 	}
 
