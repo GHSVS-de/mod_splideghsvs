@@ -15,7 +15,7 @@ Checksum entities: `{{checksumEntity}}`
 - Joomla-Target-Platform: {{targetplatformHtml}}
 - Requires: {{requires}}
 - Uses: {{uses}}
-- Included Joomla extensions:
+- Contained packages (sub Joomla extensions):
 ```
 {{thisPackages}}
 ```
