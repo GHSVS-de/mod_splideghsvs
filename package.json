@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2022.03.23",
-	"versionCompare": "2022.02.07",
+	"version": "2022.04.05",
+	"versionCompare": "2022.03.23",
 	"update": {
 		"type": "module",
 		"folder": "",
@@ -27,7 +27,7 @@
 		"docsEN": "",
 		"lastTests": [
 			"PHP 8.0",
-			"Joomla 4.0.6",
+			"Joomla 4.1.2",
 			"JCE (conerning image selection)"
 		]
 	},
@@ -69,11 +69,11 @@
 	},
 	"scripts": {
 		"g-build": "node build.js",
-    "update-check": "npm outdated",
+    "updateCheck": "npm outdated",
     "update": "npm update --save-dev"
 	},
 	"dependencies": {
-		"@splidejs/splide": "^3"
+		"@splidejs/splide": "^4"
 	},
 	"devDependencies": {
 		"adm-zip": "0.5.9",

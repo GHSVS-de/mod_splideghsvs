@@ -14,7 +14,7 @@
 ## node/npm installation/updates
 - `npm install` (if not done yet)
 ### Update
-- `npm run update-check` or (faster) `npm outdated`
+- `npm run updateCheck` or (faster) `npm outdated`
 - `npm run update` (if needed) or (faster) `npm update --save-dev`
 
 ## Build installable ZIP package
