@@ -3,6 +3,7 @@
 
 # mod_splideghsvs
 - Joomla slider based on Splidejs / splide JS library (https://github.com/Splidejs/splide).
+  - [Splide options](https://splidejs.com/guides/options/)
 - The module layouts are based on Bootstrap 5? That has not yet been decided.
 
 -----------------------------------------------------
