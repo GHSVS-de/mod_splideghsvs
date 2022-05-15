@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2022.04.05",
-	"versionCompare": "2022.03.23",
+	"version": "2022.05.15",
+	"versionCompare": "2022.04.05",
 	"update": {
 		"type": "module",
 		"folder": "",
@@ -27,7 +27,7 @@
 		"docsEN": "",
 		"lastTests": [
 			"PHP 8.0",
-			"Joomla 4.1.2",
+			"Joomla 4.1",
 			"JCE (conerning image selection)"
 		]
 	},
@@ -73,12 +73,12 @@
     "update": "npm update --save-dev"
 	},
 	"dependencies": {
-		"@splidejs/splide": "^4"
+		"@splidejs/splide": "^4.0.2"
 	},
 	"devDependencies": {
 		"adm-zip": "0.5.9",
 		"cssunminifier": "^0.0.2",
-		"fs-extra": "10.0.1",
+		"fs-extra": "10.1.0",
 		"picocolors": "^1.0.0",
 		"recursive-readdir": "^2.2.2",
 		"rimraf": "3.0.2"
