@@ -22,9 +22,14 @@ const {
 
 const manifestFileName = `${name}.xml`;
 const Manifest = `${__dirname}/package/${manifestFileName}`;
-const source = `${__dirname}/node_modules/@splidejs/splide`;
+const source = `./node_modules/@splidejs/splide`;
 const target = `./package/media`;
 let versionSub = '';
+
+let replaceXmlOptions = {};
+let zipOptions = {};
+let from = "";
+let to = "";
 
 (async function exec()
 {
@@ -34,8 +39,9 @@ let versionSub = '';
 	];
 	await helper.cleanOut(cleanOuts);
 
+	from = path.resolve(source);
 	versionSub = await helper.findVersionSubSimple (
-		path.join(source, `package.json`),
+		path.join(from, `package.json`),
 		'@splidejs/splide');
 
 	console.log(pc.magenta(pc.bold(`versionSub identified as: "${versionSub}"`)));
@@ -48,8 +54,8 @@ let versionSub = '';
 	);
 
 	// ### Prepare /media/css. START
-	let from = `${source}/dist/css`;
-	let to = `${target}/css/splide`;
+	from = `${source}/dist/css`;
+	to = `${target}/css/splide`;
 
 	await fse.copy(from, to
 	).then(
@@ -58,7 +64,7 @@ let versionSub = '';
 		)
 	);
 
-	await unminify.Css(to);
+	await unminify.Css(path.resolve(to));
 	// ### Prepare /media/css. END
 
 	// ### JS. START
@@ -119,20 +125,27 @@ let versionSub = '';
 
 	const zipFilename = `${name}-${version}_${versionSub}.zip`;
 
-	await replaceXml.main(Manifest, zipFilename);
+	replaceXmlOptions = {
+		"xmlFile": Manifest,
+		"zipFilename": zipFilename,
+		"checksum": "",
+		"dirname": __dirname
+	};
+
+	await replaceXml.main(replaceXmlOptions);
 	await fse.copy(`${Manifest}`, `./dist/${manifestFileName}`).then(
 		answer => console.log(pc.yellow(pc.bold(
 			`Copied "${manifestFileName}" to "./dist".`)))
 	);
 
 	// Create zip file and detect checksum then.
-	const zipFilePath = `./dist/${zipFilename}`;
+	const zipFilePath = path.resolve(`./dist/${zipFilename}`);
 
-	const zip = new (require('adm-zip'))();
-	zip.addLocalFolder("package", false);
-	await zip.writeZip(`${zipFilePath}`);
-	console.log(pc.cyan(pc.bold(pc.bgRed(
-		`./dist/${zipFilename} written.`))));
+	zipOptions = {
+		"source": path.resolve("package"),
+		"target": zipFilePath
+	};
+	await helper.zip(zipOptions)
 
 	const Digest = 'sha256'; //sha384, sha512
 	const checksum = await helper.getChecksum(zipFilePath, Digest)
@@ -150,26 +163,23 @@ let versionSub = '';
 		return '';
 	});
 
-	let xmlFile = 'update.xml';
-	await fse.copy(`./${xmlFile}`, `./dist/${xmlFile}`).then(
-		answer => console.log(pc.yellow(pc.bold(
-			`Copied "${xmlFile}" to ./dist.`)))
-	);
-	await replaceXml.main(`${__dirname}/dist/${xmlFile}`, zipFilename, checksum);
+	replaceXmlOptions.checksum = checksum;
 
-	xmlFile = 'changelog.xml';
-	await fse.copy(`./${xmlFile}`, `./dist/${xmlFile}`).then(
-		answer => console.log(pc.yellow(pc.bold(
-			`Copied "${xmlFile}" to ./dist.`)))
-	);
-	await replaceXml.main(`${__dirname}/dist/${xmlFile}`, zipFilename, checksum);
+	// Bei diesen werden zuerst Vorlagen nach dist/ kopiert und dort erst "replaced".
+	for (const file of [updateXml, changelogXml, releaseTxt])
+	{
+		from = file;
+		to = `./dist/${path.win32.basename(file)}`;
+		await fse.copy(from, to
+		).then(
+			answer => console.log(
+				pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
+			)
+		);
 
-	xmlFile = 'release.txt';
-	await fse.copy(`./${xmlFile}`, `./dist/${xmlFile}`).then(
-		answer => console.log(pc.yellow(pc.bold(
-			`Copied "${xmlFile}" to ./dist.`)))
-	);
-	await replaceXml.main(`${__dirname}/dist/${xmlFile}`, zipFilename, checksum);
+		replaceXmlOptions.xmlFile = path.resolve(to);
+		await replaceXml.main(replaceXmlOptions);
+	}
 
 	cleanOuts = [
 		`./package`
