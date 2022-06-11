@@ -45,7 +45,7 @@
 	</media>
 	{{namespace}}
 	<config>
-		<fields name="params" addfieldpath="modules/{{filename}}/src/Field">
+		<fields name="params" addfieldpath="modules/{{filename}}/src/Field"{{addfieldprefix}}>
 
 			<fieldset name="basic">
 
