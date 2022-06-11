@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2022.05.15",
-	"versionCompare": "2022.04.05",
+	"version": "2022.06.11",
+	"versionCompare": "2022.05.15",
 	"update": {
 		"type": "module",
 		"folder": "",
@@ -47,7 +47,6 @@
 	"contributors": [
 		{
 			"name": "G@HService Berlin Neukölln, Volkmar Volli Schlothauer",
-			"email": "",
 			"url": "https://ghsvs.de"
 		}
 	],
