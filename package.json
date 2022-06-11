@@ -76,12 +76,8 @@
 		"@splidejs/splide": "^4.0.2"
 	},
 	"devDependencies": {
-		"adm-zip": "0.5.9",
-		"cssunminifier": "^0.0.2",
 		"fs-extra": "10.1.0",
-		"picocolors": "^1.0.0",
-		"recursive-readdir": "^2.2.2",
-		"rimraf": "3.0.2"
+		"picocolors": "^1.0.0"
 	},
 	"browserslist": []
 }

@@ -1,9 +1,19 @@
+#!/usr/bin/env node
+const path = require('path');
+
+/* Configure START */
+const pathBuildKram = path.resolve("../buildKramGhsvs/build");
+const updateXml = `${pathBuildKram}/update.xml`;
+const changelogXml = `${pathBuildKram}/changelog.xml`;
+const releaseTxt = `${pathBuildKram}/release.txt`;
+/* Configure END */
+
+const replaceXml = require(`${pathBuildKram}/replaceXml.js`);
+const helper = require(`${pathBuildKram}/helper.js`);
+const unminify = require(`${pathBuildKram}/unminify.js`);
+
 const fse = require('fs-extra');
 const pc = require('picocolors');
-const replaceXml = require('./build/replaceXml.js');
-const path = require('path');
-const helper = require('./build/helper.js');
-const unminify = require('./build/unminify.js');
 
 const {
 	name,
