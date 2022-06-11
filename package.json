@@ -73,7 +73,7 @@
     "update": "npm update --save-dev"
 	},
 	"dependencies": {
-		"@splidejs/splide": "^4.0.2"
+		"@splidejs/splide": "^4.0.7"
 	},
 	"devDependencies": {
 		"fs-extra": "10.1.0",
