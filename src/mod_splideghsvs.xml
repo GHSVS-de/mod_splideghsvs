@@ -66,23 +66,19 @@
 			<fieldset name="sliderSettings"
 				label="MOD_SPLIDEGHSVS_SLIDERSETTINGS">
 
-				<!-- <field name="sliderType" type="list" default="synced" filter="string"
-					label="MOD_SPLIDEGHSVS_SLIDERTYPE">
-					<option value="synced">MOD_SPLIDEGHSVS_SLIDERTYPE_SYNCED</option>
-				</field> -->
-
 				<field name="themeSpacer" type="note"
 					class="alert alert-info"
 					label="MOD_SPLIDEGHSVS_THEME"
 					description="MOD_SPLIDEGHSVS_THEME_DESC"/>
 
-				<field name="theme" type="modSplideGhsvs.FileListRecursive"
+				<field name="theme" type="FilesRecursiveGhsvs"
 					default="splide-core.css"
 					label="MOD_SPLIDEGHSVS_THEME"
-					filter="\.css$" fileFilter="\.css$"
+					fileFilter="\.css$"
 					exclude="\.min\.css$"
 					hide_default="true"
 					hide_none="true"
+					stripext="false"
 					directory="media/mod_splideghsvs/css/splide">
 						<option value="0">JNONE</option>
 				</field>
