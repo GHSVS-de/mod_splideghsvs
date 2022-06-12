@@ -1,10 +1,9 @@
 <?php
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Installer\Installer;
+use Joomla\CMS\Factory;
 use Joomla\CMS\Installer\InstallerScript;
 use Joomla\CMS\Log\Log;
-use Joomla\CMS\Factory;
 
 class mod_splideGhsvsInstallerScript extends InstallerScript
 {
@@ -113,8 +112,6 @@ class mod_splideGhsvsInstallerScript extends InstallerScript
 	{
 		return;
 
-
-
 		$db = Factory::getDbo();
 
 		try
@@ -135,8 +132,8 @@ class mod_splideGhsvsInstallerScript extends InstallerScript
 				return;
 			}
 
-			$ids = \array_keys($ids);
-			$ids =\implode(',', $ids);
+			$ids = array_keys($ids);
+			$ids =implode(',', $ids);
 
 			// Delete from update sites
 			$db->setQuery(
@@ -156,5 +153,5 @@ class mod_splideGhsvsInstallerScript extends InstallerScript
 		{
 			return;
 		}
- 	}
+	}
 }

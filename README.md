@@ -21,6 +21,13 @@
 - `npm run updateCheck` or (faster) `npm outdated`
 - `npm run update` (if needed) or (faster) `npm update --save-dev`
 
+## PHP Codestyle
+If you think it's worth it.
+- `cd /mnt/z/git-kram/php-cs-fixer-ghsvs`
+- `npm run mod_splideghsvsDry` (= dry test run).
+- `npm run mod_splideghsvs` (= cleans code).
+- `cd /mnt/z/git-kram/mod_splideghsvs` (back to this repo).
+
 ## Build installable ZIP package
 - `node build.js`
 - New, installable ZIP is in `./dist` afterwards.

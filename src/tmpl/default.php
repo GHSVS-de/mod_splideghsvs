@@ -1,10 +1,7 @@
 <?php
-\defined('_JEXEC') or die;
+defined('_JEXEC') or die;
 
-use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\Module\SplideGhsvs\Site\Helper\SplideGhsvsHelper;
 
 $myId = 'image-slider-' . $module->id;
 $doc = Factory::getDocument();

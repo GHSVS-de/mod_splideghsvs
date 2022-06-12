@@ -4,10 +4,9 @@ namespace Joomla\Module\SplideGhsvs\Site\Helper;
 
 \defined('_JEXEC') or die;
 
-use Joomla\Registry\Registry;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Factory;
-use Joomla\Filesystem\File;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\Registry\Registry;
 
 class SplideGhsvsHelper
 {
@@ -24,7 +23,7 @@ class SplideGhsvsHelper
 	{
 		$slides = $params->get('fotos');
 
-		if (is_object($slides) && count(get_object_vars($slides)))
+		if (\is_object($slides) && \count(get_object_vars($slides)))
 		{
 			foreach ($slides as $key => $slide)
 			{
@@ -62,8 +61,10 @@ class SplideGhsvsHelper
 		if (is_file($resizeFile))
 		{
 			\JLoader::register('ImgResizeCache', $resizeFile);
-			\JLoader::register('Bs3ghsvsItem',
-				JPATH_PLUGINS . '/system/bs3ghsvs/Helper/ItemHelper.php');
+			\JLoader::register(
+				'Bs3ghsvsItem',
+				JPATH_PLUGINS . '/system/bs3ghsvs/Helper/ItemHelper.php'
+			);
 
 			// use default settings
 			$imageResizer = new \ImgResizeCache(new Registry);
@@ -81,8 +82,11 @@ class SplideGhsvsHelper
 				if (!isset(self::$loaded['css'][$file]))
 				{
 					self::$loaded['css'][$file] = 1;
-					HTMLHelper::_('stylesheet', $file,
-						['version' => self::getMediaVersion()]);
+					HTMLHelper::_(
+						'stylesheet',
+						$file,
+						['version' => self::getMediaVersion()]
+					);
 				}
 			}
 		}
@@ -94,9 +98,11 @@ class SplideGhsvsHelper
 
 		if ($theme = $params->get('theme', 'splide-core.css'))
 		{
-			$theme = HTMLHelper::_('stylesheet',
+			$theme = HTMLHelper::_(
+				'stylesheet',
 				'mod_splideghsvs/splide/' . $theme,
-				['pathOnly' => true, 'relative' => true]);
+				['pathOnly' => true, 'relative' => true]
+			);
 
 			if ($theme !== '')
 			{
@@ -106,9 +112,11 @@ class SplideGhsvsHelper
 
 		if (isset($sliderConf['css']) && $sliderConf['css'] !== '')
 		{
-			$theme = HTMLHelper::_('stylesheet',
+			$theme = HTMLHelper::_(
+				'stylesheet',
 				'mod_splideghsvs/' . $sliderConf['css'],
-				['pathOnly' => true, 'relative' => true]);
+				['pathOnly' => true, 'relative' => true]
+			);
 
 			if ($theme !== '')
 			{
@@ -119,8 +127,11 @@ class SplideGhsvsHelper
 
 		if ($theme = trim($params->get('customCssFile', '')))
 		{
-			$theme = str_replace('$template',
-				Factory::getApplication()->getTemplate(), $theme);
+			$theme = str_replace(
+				'$template',
+				Factory::getApplication()->getTemplate(),
+				$theme
+			);
 			$sliderConf['loadCss'][] = $theme;
 		}
 
@@ -132,8 +143,11 @@ class SplideGhsvsHelper
 		if (!isset(self::$loaded['js']))
 		{
 			self::$loaded['js'] = 'mod_splideghsvs/splide/splide.min.js';
-			HTMLHelper::_('script', self::$loaded['js'],
-				['relative' => true, 'version' => self::getMediaVersion()]);
+			HTMLHelper::_(
+				'script',
+				self::$loaded['js'],
+				['relative' => true, 'version' => self::getMediaVersion()]
+			);
 		}
 	}
 
@@ -142,7 +156,7 @@ class SplideGhsvsHelper
 		$inlineJs = ['document.addEventListener("DOMContentLoaded", function (){'];
 
 		// Create the main slider.
-		$inlineJs[] = 'var ' . $primId .' = new Splide("#' . $primId. '",'
+		$inlineJs[] = 'var ' . $primId . ' = new Splide("#' . $primId . '",'
 			. $sliderConf['primSlider'] . ')';
 
 		if (!isset($sliderConf['secSlider']))
@@ -157,7 +171,7 @@ class SplideGhsvsHelper
 				. $sliderConf['secSlider'] . ').mount();';
 
 			// Set the thumbnails slider as a sync target and mount the main slider.
-			$inlineJs[] = $primId . '.sync('. $secId . ').mount();';
+			$inlineJs[] = $primId . '.sync(' . $secId . ').mount();';
 		}
 
 		$inlineJs[] = '});';
@@ -176,10 +190,10 @@ class SplideGhsvsHelper
 			if (json_last_error() === JSON_ERROR_NONE)
 			{
 				if (
-					!is_object($sliderConf)
+					!\is_object($sliderConf)
 					|| !property_exists($sliderConf, 'primSlider')
-					|| !is_object($sliderConf->primSlider)
-				){
+					|| !\is_object($sliderConf->primSlider)
+				) {
 					return false;
 				}
 
@@ -202,14 +216,15 @@ class SplideGhsvsHelper
 
 		return false;
 	}
+
 	public static function getMediaVersion()
 	{
 		if (!isset(self::$loaded['mediaVersion']))
 		{
 			if (!(self::$loaded['mediaVersion'] = file_get_contents(
-				JPATH_SITE . '/media/mod_splideghsvs/mediaVersion.txt'))
-			)
-			{
+				JPATH_SITE . '/media/mod_splideghsvs/mediaVersion.txt'
+			))
+			) {
 				self::$loaded['mediaVersion'] = 'auto';
 			}
 		}

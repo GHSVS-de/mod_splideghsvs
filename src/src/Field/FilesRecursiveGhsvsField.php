@@ -2,6 +2,7 @@
 /*
 Rekursive Liste von Dateien in einem directory.
 */
+
 namespace Joomla\Module\SplideGhsvs\Site\Field;
 
 \defined('_JEXEC') or die;
@@ -9,7 +10,6 @@ namespace Joomla\Module\SplideGhsvs\Site\Field;
 use Joomla\CMS\Form\Field\FilelistField;
 
 use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Language\Text;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
 use Joomla\Filesystem\Path;
@@ -26,7 +26,7 @@ class FilesRecursiveGhsvsField extends FilelistField
 
 	protected function getOptions()
 	{
-		$options = array();
+		$options = [];
 
 		$path = $this->directory;
 
@@ -47,7 +47,7 @@ class FilesRecursiveGhsvsField extends FilelistField
 				// Check to see if the file is in the exclude mask.
 				if ($this->exclude)
 				{
-					if (preg_match(chr(1) . $this->exclude . chr(1), $file))
+					if (preg_match(\chr(1) . $this->exclude . \chr(1), $file))
 					{
 						continue;
 					}

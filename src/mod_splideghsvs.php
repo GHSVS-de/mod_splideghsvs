@@ -1,5 +1,5 @@
 <?php
-\defined('_JEXEC') or die;
+defined('_JEXEC') or die;
 
 if (version_compare(JVERSION, '4', 'lt'))
 {
@@ -14,7 +14,6 @@ if (version_compare(JVERSION, '4', 'lt'))
 
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\Module\SplideGhsvs\Site\Helper\SplideGhsvsHelper;
-use Joomla\CMS\HTML\HTMLHelper;
 
 $opts = null;
 $optsThumbs = null;
