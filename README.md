@@ -35,5 +35,5 @@ If you think it's worth it.
 
 ### For Joomla update and changelog server
 - Create new release with new tag.
-- - See release description in `dist/release.txt`.
+  - See release description in `dist/release.txt`.
 - Extracts(!) of the update and changelog XML for update and changelog servers are in `./dist` as well. Copy/paste and necessary additions.
