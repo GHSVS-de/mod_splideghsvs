@@ -18,6 +18,9 @@ class mod_splideGhsvsInstallerScript extends InstallerScript
 		'/modules/mod_splideghsvs/tmpl/default_synced.php',
 		'/modules/mod_splideghsvs/tmpl/default-test.php',
 		'/modules/mod_splideghsvs/tmpl/standard001.php',
+		'/modules/mod_splideghsvs/src/Field/filelistrecursive.php',
+		'/modules/mod_splideghsvs/src/Field/AssetsBe.php',
+		'/media/mod_splideghsvs/css/backend.css',
 	];
 
 	/**
