@@ -46,23 +46,14 @@ let to = "";
 
 	console.log(pc.magenta(pc.bold(`versionSub identified as: "${versionSub}"`)));
 
-	await fse.copy("./media", target
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "./media" to "${target}".`))
-		)
-	);
+	from = './media';
+	to = target;
+	await helper.copy(from, to)
 
 	// ### Prepare /media/css. START
 	from = `${source}/dist/css`;
 	to = `${target}/css/splide`;
-
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" into "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	await unminify.Css(path.resolve(to));
 	// ### Prepare /media/css. END
@@ -70,44 +61,22 @@ let to = "";
 	// ### JS. START
 	from = `${source}/dist/js`;
 	to = `${target}/js/splide`;
-
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" into "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 	// ### JS. END
 
 	// ### SCSS. START
 	from = `${source}/src/css`;
 	to = `${target}/scss/splide`;
-
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" into "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 	// ### SCSS. END
 
 	from = `${source}/LICENSE`;
 	to = `${target}/LICENSE_splide.txt`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" into "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = `./src`;
 	to = `./package`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" into "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	to = path.join(target, 'mediaVersion.txt');
 	await fse.writeFile(to, `v${versionSub}`, { encoding: "utf8" }
@@ -115,13 +84,7 @@ let to = "";
 		answer => console.log(pc.green(pc.bold(`${to} written`)))
 	);
 
-	if (!(await fse.exists("./dist")))
-	{
-		await fse.mkdir("./dist"
-		).then(
-			answer => console.log(pc.yellow(pc.bold(`Created "./dist".`)))
-		);
-  }
+	await helper.mkdir('./dist');
 
 	const zipFilename = `${name}-${version}_${versionSub}.zip`;
 
@@ -133,10 +96,9 @@ let to = "";
 	};
 
 	await replaceXml.main(replaceXmlOptions);
-	await fse.copy(`${Manifest}`, `./dist/${manifestFileName}`).then(
-		answer => console.log(pc.yellow(pc.bold(
-			`Copied "${manifestFileName}" to "./dist".`)))
-	);
+	from = Manifest;
+	to = `./dist/${manifestFileName}`;
+	await helper.copy(from, to)
 
 	// Create zip file and detect checksum then.
 	const zipFilePath = path.resolve(`./dist/${zipFilename}`);
@@ -147,35 +109,14 @@ let to = "";
 	};
 	await helper.zip(zipOptions)
 
-	const Digest = 'sha256'; //sha384, sha512
-	const checksum = await helper.getChecksum(zipFilePath, Digest)
-  .then(
-		hash => {
-			const tag = `<${Digest}>${hash}</${Digest}>`;
-			console.log(pc.green(pc.bold(`Checksum tag is: ${tag}`)));
-			return tag;
-		}
-	)
-	.catch(error => {
-		console.log(error);
-		console.log(pc.red(pc.bold(
-			`Error while checksum creation. I won't set one!`)));
-		return '';
-	});
-
-	replaceXmlOptions.checksum = checksum;
+	replaceXmlOptions.checksum = await helper._getChecksum(zipFilePath);
 
 	// Bei diesen werden zuerst Vorlagen nach dist/ kopiert und dort erst "replaced".
 	for (const file of [updateXml, changelogXml, releaseTxt])
 	{
 		from = file;
 		to = `./dist/${path.win32.basename(file)}`;
-		await fse.copy(from, to
-		).then(
-			answer => console.log(
-				pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-			)
-		);
+		await helper.copy(from, to)
 
 		replaceXmlOptions.xmlFile = path.resolve(to);
 		await replaceXml.main(replaceXmlOptions);
