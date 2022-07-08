@@ -11,6 +11,7 @@ use Joomla\Registry\Registry;
 class SplideGhsvsHelper
 {
 	private static $loaded = [];
+	private static $name = 'mod_splideghsvs';
 
 	/**
 	 * Retrieve list of slide items from module params.
@@ -73,8 +74,16 @@ class SplideGhsvsHelper
 		return $imageResizer;
 	}
 
-	public static function loadCss(&$params)
+	public static function loadCss(&$params, $wa)
 	{
+		if ($theme = $params->get('theme', 'splide-core.css'))
+		{
+			// Strip extension.
+			$assetName = substr($theme, 0, (strrpos($theme, ".")));
+			$assetName = self::$name . '.' . str_replace('/', '.', $assetName);
+			$wa->useStyle($assetName);
+		}
+
 		if ($loadCss = self::collectCss($params)['loadCss'])
 		{
 			foreach ($loadCss as $file)
@@ -96,25 +105,11 @@ class SplideGhsvsHelper
 	{
 		$sliderConf['loadCss'] = [];
 
-		if ($theme = $params->get('theme', 'splide-core.css'))
-		{
-			$theme = HTMLHelper::_(
-				'stylesheet',
-				'mod_splideghsvs/splide/' . $theme,
-				['pathOnly' => true, 'relative' => true]
-			);
-
-			if ($theme !== '')
-			{
-				$sliderConf['loadCss'][] = ltrim($theme, '/\\');
-			}
-		}
-
 		if (isset($sliderConf['css']) && $sliderConf['css'] !== '')
 		{
 			$theme = HTMLHelper::_(
 				'stylesheet',
-				'mod_splideghsvs/' . $sliderConf['css'],
+				self::$name . '/' . $sliderConf['css'],
 				['pathOnly' => true, 'relative' => true]
 			);
 
@@ -138,17 +133,10 @@ class SplideGhsvsHelper
 		return $sliderConf;
 	}
 
-	public static function loadJs(&$params)
+	public static function loadJs(&$params, $wa)
 	{
-		if (!isset(self::$loaded['js']))
-		{
-			self::$loaded['js'] = 'mod_splideghsvs/splide/splide.min.js';
-			HTMLHelper::_(
-				'script',
-				self::$loaded['js'],
-				['relative' => true, 'version' => self::getMediaVersion()]
-			);
-		}
+		$wa->useScript(self::$name . '.core');
+
 	}
 
 	public static function loadInlineJs($sliderConf, $primId, $secId = null)
@@ -221,9 +209,9 @@ class SplideGhsvsHelper
 	{
 		if (!isset(self::$loaded['mediaVersion']))
 		{
-			if (!(self::$loaded['mediaVersion'] = file_get_contents(
-				JPATH_SITE . '/media/mod_splideghsvs/mediaVersion.txt'
-			))
+			if (!(self::$loaded['mediaVersion'] =  json_decode(
+			file_get_contents(JPATH_ROOT . '/media/' . self::$name . '/joomla.asset.json')
+			)->version)
 			) {
 				self::$loaded['mediaVersion'] = 'auto';
 			}
