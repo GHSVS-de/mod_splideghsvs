@@ -26,7 +26,13 @@ const source = `./node_modules/@splidejs/splide`;
 const target = `./package/media`;
 let versionSub = '';
 
-let replaceXmlOptions = {};
+let replaceXmlOptions = {
+	"xmlFile": '',
+	"zipFilename": '',
+	"checksum": '',
+	"dirname": __dirname,
+	"jsonString": ''
+};
 let zipOptions = {};
 let from = "";
 let to = "";
@@ -78,23 +84,56 @@ let to = "";
 	to = `./package`;
 	await helper.copy(from, to)
 
-	to = path.join(target, 'mediaVersion.txt');
-	await fse.writeFile(to, `v${versionSub}`, { encoding: "utf8" }
+	to = 'joomla.asset.json';
+	console.log(pc.green(pc.bold(`Start build of ${to}.`)))
+
+	from = path.resolve(`${target}/css/splide`);
+	const regex = '\.css$';
+	const collector = await helper.getFilesRecursive(
+		from,
+		regex,
+		from + '/',
+		'\.min\.css$'
+	);
+
+	to = path.resolve(`${target}/${to}`);
+	jsonObj = require(to);
+
+	for (const file of collector)
+	{
+		// Strip extension. Then replace / with .
+		let assetName = file.substring(0, file.lastIndexOf('.')) || file;
+		assetName = `{{name}}.${assetName.replace(new RegExp(/\//, 'g'), '.')}`;
+
+		const registryItem = {
+			name: assetName,
+			version: version,
+			type: "style",
+			uri: path.join('{{name}}', 'splide', file)
+		};
+
+		await jsonObj.assets.push(registryItem);
+	}
+
+	await fse.writeFile(to, JSON.stringify(jsonObj, null, '\t'), {encoding:"utf8"}
 	).then(
 		answer => console.log(pc.green(pc.bold(`${to} written`)))
 	);
+
+	replaceXmlOptions.xmlFile = to;
+	await replaceXml.main(replaceXmlOptions);
 
 	await helper.mkdir('./dist');
 
 	const zipFilename = `${name}-${version}_${versionSub}.zip`;
 
-	replaceXmlOptions = {
-		"xmlFile": Manifest,
-		"zipFilename": zipFilename,
-		"checksum": "",
-		"dirname": __dirname
-	};
-
+	replaceXmlOptions = Object.assign(
+		replaceXmlOptions,
+		{
+			"xmlFile": Manifest,
+			"zipFilename": zipFilename
+		}
+	);
 	await replaceXml.main(replaceXmlOptions);
 	from = Manifest;
 	to = `./dist/${manifestFileName}`;

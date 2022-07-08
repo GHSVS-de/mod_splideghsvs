@@ -20,6 +20,7 @@ class mod_splideGhsvsInstallerScript extends InstallerScript
 		'/modules/mod_splideghsvs/src/Field/filelistrecursive.php',
 		'/modules/mod_splideghsvs/src/Field/AssetsBe.php',
 		'/media/mod_splideghsvs/css/backend.css',
+		'/media/mod_splideghsvs/mediaVersion.txt',
 	];
 
 	/**

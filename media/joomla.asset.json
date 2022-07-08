@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "{{name}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
+  "license": "{{licenseLong}}",
+  "assets": [
+    {
+      "name": "{{name}}.core",
+      "type": "script",
+      "uri": "{{name}}/splide/splide.js",
+			"version": "{{version}}"
+    }
+  ]
+}
