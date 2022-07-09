@@ -84,20 +84,21 @@ let to = "";
 	to = `./package`;
 	await helper.copy(from, to)
 
+	// ### CREATE A joomla.asset.json - START
 	to = 'joomla.asset.json';
-	console.log(pc.green(pc.bold(`Start build of ${to}.`)))
+	console.log(pc.green(pc.bold(`Start build of ${to}.`)));
+	to = path.resolve(`${target}/${to}`);
+	jsonObj = require(to);
 
 	from = path.resolve(`${target}/css/splide`);
 	const regex = '\.css$';
+	const exclude = '\.min\.css$';
 	const collector = await helper.getFilesRecursive(
 		from,
 		regex,
 		from + '/',
-		'\.min\.css$'
+		exclude
 	);
-
-	to = path.resolve(`${target}/${to}`);
-	jsonObj = require(to);
 
 	for (const file of collector)
 	{
@@ -115,13 +116,17 @@ let to = "";
 		await jsonObj.assets.push(registryItem);
 	}
 
-	await fse.writeFile(to, JSON.stringify(jsonObj, null, '\t'), {encoding:"utf8"}
+	await fse.writeFile(
+		to,
+		JSON.stringify(jsonObj, null, '\t'),
+		{encoding:"utf8"}
 	).then(
 		answer => console.log(pc.green(pc.bold(`${to} written`)))
 	);
 
 	replaceXmlOptions.xmlFile = to;
 	await replaceXml.main(replaceXmlOptions);
+	// ### CREATE A joomla.asset.json - END
 
 	await helper.mkdir('./dist');
 
