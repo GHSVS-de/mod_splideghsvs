@@ -21,6 +21,10 @@ class mod_splideGhsvsInstallerScript extends InstallerScript
 		'/modules/mod_splideghsvs/src/Field/AssetsBe.php',
 		'/media/mod_splideghsvs/css/backend.css',
 		'/media/mod_splideghsvs/mediaVersion.txt',
+		'/modules/mod_splideghsvs/language/de-DE/de-DE.mod_splideghsvs.ini',
+		'/modules/mod_splideghsvs/language/de-DE/de-DE.mod_splideghsvs.sys.ini',
+		'/modules/mod_splideghsvs/language/en-GB/en-GB.mod_splideghsvs.ini',
+		'/modules/mod_splideghsvs/language/en-GB/en-GB.mod_splideghsvs.sys.ini',
 	];
 
 	/**
