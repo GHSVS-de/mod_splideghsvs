@@ -1,8 +1,6 @@
 <?php
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Factory;
-
 $myId = 'image-slider-' . $module->id;
 
 $js = <<<JS

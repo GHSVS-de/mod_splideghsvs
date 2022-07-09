@@ -217,8 +217,9 @@ class SplideGhsvsHelper
 		if (!isset(self::$loaded['mediaVersion']))
 		{
 			if (!(self::$loaded['mediaVersion'] =  json_decode(
-			file_get_contents(
-				JPATH_ROOT . '/media/' . self::$name . '/joomla.asset.json')
+				file_get_contents(
+				JPATH_ROOT . '/media/' . self::$name . '/joomla.asset.json'
+			)
 			)->version)
 			) {
 				self::$loaded['mediaVersion'] = 'auto';
