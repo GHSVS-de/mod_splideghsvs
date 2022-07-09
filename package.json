@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2022.06.12",
-	"versionCompare": "2022.05.15",
+	"version": "2022.07.09",
+	"versionCompare": "2022.06.12",
 	"update": {
 		"type": "module",
 		"folder": "",
