@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 
 $myId = 'image-slider-' . $module->id;
-$doc = Factory::getDocument();
+
 $js = <<<JS
 document.addEventListener( 'DOMContentLoaded', function () {
   new Splide('#$myId', {
@@ -28,7 +28,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
   } ).mount();
 } );
 JS;
-$doc->addScriptDeclaration($js);
+$wa->addInlineScript($js);
 ?>
 <div id="<?php echo $myId; ?>" class="splide mx-auto">
 	<div class="splide__track">
