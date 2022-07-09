@@ -10,6 +10,12 @@
       "type": "script",
       "uri": "{{name}}/splide/splide.js",
 			"version": "{{version}}"
-    }
+    },
+		{
+			"name": "{{name}}.override.template",
+			"version": "{{version}}",
+			"type": "style",
+			"uri": "{{name}}.css"
+		}
   ]
 }

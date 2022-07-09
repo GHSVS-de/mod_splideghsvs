@@ -99,6 +99,8 @@ class SplideGhsvsHelper
 				}
 			}
 		}
+
+		$wa->useStyle('mod_splideghsvs.override.template');
 	}
 
 	private static function collectCss(&$params, &$sliderConf = [])
