@@ -37,7 +37,7 @@
 
 	<media folder="media" destination="{{name}}">
 		<filename>LICENSE_splide.txt</filename>
-		<filename>mediaVersion.txt</filename>
+		<filename>joomla.asset.json</filename>
 		<folder>css</folder>
 		<folder>js</folder>
 		<folder>json</folder>
