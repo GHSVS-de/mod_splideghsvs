@@ -11,6 +11,7 @@ use Joomla\Registry\Registry;
 class SplideGhsvsHelper
 {
 	private static $loaded = [];
+
 	private static $name = 'mod_splideghsvs';
 
 	/**
@@ -18,7 +19,7 @@ class SplideGhsvsHelper
 	 *
 	 * @param   \Joomla\Registry\Registry  &$params  module parameters
 	 *
-	 * @return  array
+	 * @return  object of objects or FALSE
 	 */
 	public static function getSlides(&$params)
 	{
@@ -49,9 +50,14 @@ class SplideGhsvsHelper
 						htmlspecialchars(trim($slide->$checkKey), ENT_COMPAT, 'utf-8') : '';
 				}
 			}
+
+			if (\is_object($slides) && \count(get_object_vars($slides)))
+			{
+				return $slides;
+			}
 		}
 
-		return $slides;
+		return false;
 	}
 
 	public static function getImageResizer()
@@ -138,7 +144,6 @@ class SplideGhsvsHelper
 	public static function loadJs(&$params, $wa)
 	{
 		$wa->useScript(self::$name . '.core');
-
 	}
 
 	public static function loadInlineJs($sliderConf, $primId, $secId = null)
@@ -212,7 +217,8 @@ class SplideGhsvsHelper
 		if (!isset(self::$loaded['mediaVersion']))
 		{
 			if (!(self::$loaded['mediaVersion'] =  json_decode(
-			file_get_contents(JPATH_ROOT . '/media/' . self::$name . '/joomla.asset.json')
+			file_get_contents(
+				JPATH_ROOT . '/media/' . self::$name . '/joomla.asset.json')
 			)->version)
 			) {
 				self::$loaded['mediaVersion'] = 'auto';
