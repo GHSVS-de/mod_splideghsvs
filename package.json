@@ -17,7 +17,7 @@
 	"releaseTxt": {
 		"title": "Joomla site module mod_splideghsvs",
 		"requires": [],
-		"uses": ["https://github.com/Splidejs"],
+		"uses": ["https://github.com/Splidejs/splide"],
 		"language": [
 			"en-GB",
 			"de-DE"
