@@ -12,6 +12,9 @@ if ($slides === false)
 	return;
 }
 
+$config = SplideGhsvsHelper::getConfig($params);
+
+
 $wa = Factory::getDocument()->getWebAssetManager();
 $wr = $wa->getRegistry()->addExtensionRegistryFile('mod_splideghsvs');
 SplideGhsvsHelper::loadCss($params, $wa);

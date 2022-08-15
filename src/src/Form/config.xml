@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+
+	<field name="speed" type="number" min="10" max="60000"
+		default="4000"
+		label="Speed (sec)"/>
+
+	<field name="interval" type="number" min="10" max="60000"
+		default="7000"
+		label="Interval (sec)"/>
+
+	<field name="pauseOnHover" type="list" default="1" filter="integer"
+		label="pauseOnHover"
+		description="Determines whether to pause autoplay on mouseover or not">
+		<option value="1">JYES</option>
+		<option value="0">JNO</option>
+	</field>
+
+</form>

@@ -42,6 +42,15 @@ class SplideGhsvsHelper
 				$slide->width = $wurmInfos->attributes['width'];
 				$slide->height = $wurmInfos->attributes['height'];
 
+				// B\C
+				$check = ['link'];
+
+				foreach ($check as $checkKey)
+				{
+					$slide->$checkKey = isset($slide->$checkKey) ?
+						trim($slide->$checkKey) : '';
+				}
+
 				$check = ['headline', 'text'];
 
 				foreach ($check as $checkKey)
@@ -58,6 +67,25 @@ class SplideGhsvsHelper
 		}
 
 		return false;
+	}
+
+	/**
+	 * Retrieve list of slide items from module params.
+	 *
+	 * @param   \Joomla\Registry\Registry  &$params  module parameters
+	 *
+	 * @return  object of objects or FALSE
+	 */
+	public static function getConfig(&$params)
+	{
+		$data = $params->get('config');
+
+		if (\is_object($data) && \count(get_object_vars($data)))
+		{
+			return new Registry($data);
+		}
+
+		return new Registry();
 	}
 
 	public static function getImageResizer()

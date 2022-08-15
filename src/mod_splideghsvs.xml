@@ -83,34 +83,18 @@
 						<option value="0">JNONE</option>
 				</field>
 
-				<!-- <field name="customCssFileSpacer" type="note" close="true" class="alert"
-					label="MOD_SPLIDEGHSVS_CUSTOMCSSFILE"
-					description="MOD_SPLIDEGHSVS_CUSTOMCSSFILE_DESC"/> -->
+				<field name="configSpacer" type="note"
+					class="alert alert-info"
+					label="MOD_SPLIDEGHSVS_CONFIG"
+					description="MOD_SPLIDEGHSVS_CONFIG_DESC"/>
 
-				<!-- <field type="text" name="customCssFile" filter="string" default=""
-					class="extended-width"
-					label="MOD_SPLIDEGHSVS_CUSTOMCSSFILE"
-					hint="MOD_SPLIDEGHSVS_CUSTOMCSSFILE_HINT"/>
+				<field name="config" type="subform" min="1" max="1" multiple="false"
+					formsource="modules/mod_splideghsvs/src/Form/config.xml"
+					layout="joomla.form.field.subform.default" groupByFieldset="false"
+					label=""
+					hiddenLabel="true"
+					description="" />
 
-				<field name="sliderConfSpacer" type="note" close="true" class="alert"
-					label="MOD_SPLIDEGHSVS_SLIDERCONF"
-					description="MOD_SPLIDEGHSVS_SLIDERCONF_DESC"/>
-
-				<field name="sliderConf" type="modSplideGhsvs.FileListRecursive"
-					default="0"
-					label="MOD_SPLIDEGHSVS_SLIDERCONF"
-					filter="\.json$" fileFilter="\.json$"
-					hide_default="true"
-					hide_none="true"
-					directory="media/mod_splideghsvs/json/sliderConfig">
-						<option value="0">MOD_SPLIDEGHSVS_SLIDERCONF_CUSTOM</option>
-				</field>
-
-				<field type="text" name="sliderConfCustom" filter="string" default=""
-					class="extended-width"
-					label="MOD_SPLIDEGHSVS_CUSTOMJSONFILE"
-					showon="sliderConf:0"
-					hint="MOD_SPLIDEGHSVS_CUSTOMJSONFILE_HINT"/> -->
 
 			</fieldset><!--/sliderSettings-->
 
