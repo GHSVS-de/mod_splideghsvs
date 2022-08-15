@@ -2,15 +2,15 @@
 const path = require('path');
 
 /* Configure START */
-const pathBuildKram = path.resolve("../buildKramGhsvs/build");
-const updateXml = `${pathBuildKram}/update.xml`;
-const changelogXml = `${pathBuildKram}/changelog.xml`;
-const releaseTxt = `${pathBuildKram}/release.txt`;
+const pathBuildKram = path.resolve("../buildKramGhsvs");
+const updateXml = `${pathBuildKram}/build/update.xml`;
+const changelogXml = `${pathBuildKram}/build/changelog.xml`;
+const releaseTxt = `${pathBuildKram}/build/release.txt`;
 /* Configure END */
 
-const replaceXml = require(`${pathBuildKram}/replaceXml.js`);
-const helper = require(`${pathBuildKram}/helper.js`);
-const unminify = require(`${pathBuildKram}/unminify.js`);
+const replaceXml = require(`${pathBuildKram}/build/replaceXml.js`);
+const helper = require(`${pathBuildKram}/build/helper.js`);
+const unminify = require(`${pathBuildKram}/build/unminify.js`);
 
 const pc = require(`${pathBuildKram}/node_modules/picocolors`);
 const fse = require(`${pathBuildKram}/node_modules/fs-extra`);
