@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2022.07.09",
-	"versionCompare": "2022.06.12",
+	"version": "2022.08.15",
+	"versionCompare": "2022.07.09",
 	"update": {
 		"type": "module",
 		"folder": "",
@@ -30,7 +30,9 @@
 		"docsDE": "",
 		"docsEN": "",
 		"lastTests": [
+			"PHP 7.4",
 			"PHP 8.0",
+			"PHP 8.1",
 			"Joomla 4.1",
 			"JCE (conerning image selection)"
 		]
@@ -45,7 +47,6 @@
 	"copyright": "(C) 2021, G@HService Berlin Neukölln, Volkmar Volli Schlothauer (ghsvs.de)",
 	"author": {
 		"name": "G@HService Berlin Neukölln, Volkmar Volli Schlothauer",
-		"email": "",
 		"url": "https://ghsvs.de"
 	},
 	"contributors": [
@@ -78,9 +79,6 @@
 	"dependencies": {
 		"@splidejs/splide": "^4.0.7"
 	},
-	"devDependencies": {
-		"fs-extra": "10.1.0",
-		"picocolors": "^1.0.0"
-	},
+	"devDependencies": {	},
 	"browserslist": []
 }
