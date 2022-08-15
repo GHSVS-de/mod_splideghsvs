@@ -12,8 +12,8 @@ const replaceXml = require(`${pathBuildKram}/replaceXml.js`);
 const helper = require(`${pathBuildKram}/helper.js`);
 const unminify = require(`${pathBuildKram}/unminify.js`);
 
-const fse = require('fs-extra');
-const pc = require('picocolors');
+const pc = require(`${pathBuildKram}/node_modules/picocolors`);
+const fse = require(`${pathBuildKram}/node_modules/fs-extra`);
 
 const {
 	name,
@@ -31,7 +31,8 @@ let replaceXmlOptions = {
 	"zipFilename": '',
 	"checksum": '',
 	"dirname": __dirname,
-	"jsonString": ''
+	"jsonString": '',
+	"versionSub": ''
 };
 let zipOptions = {};
 let from = "";
@@ -51,6 +52,7 @@ let to = "";
 		'@splidejs/splide');
 
 	console.log(pc.magenta(pc.bold(`versionSub identified as: "${versionSub}"`)));
+	replaceXmlOptions.versionSub = versionSub;
 
 	from = './media';
 	to = target;
@@ -85,12 +87,15 @@ let to = "";
 	await helper.copy(from, to)
 
 	// ### CREATE A joomla.asset.json - START
+	// Makes loading via WAM easier.
 	to = 'joomla.asset.json';
 	console.log(pc.green(pc.bold(`Start build of ${to}.`)));
 	to = path.resolve(`${target}/${to}`);
 	jsonObj = require(to);
 
 	from = path.resolve(`${target}/css/splide`);
+
+	// Collect css files. We don't need min.css because WAM loads what it wants.
 	const regex = '\.css$';
 	const exclude = '\.min\.css$';
 	const collector = await helper.getFilesRecursive(
@@ -108,7 +113,7 @@ let to = "";
 
 		const registryItem = {
 			name: assetName,
-			version: version,
+			version: '{{versionSub}}',
 			type: "style",
 			uri: path.join('{{name}}', 'splide', file)
 		};
