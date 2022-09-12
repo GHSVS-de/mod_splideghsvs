@@ -82,6 +82,8 @@ let to = "";
 	to = `${target}/LICENSE_splide.txt`;
 	await helper.copy(from, to)
 
+	await helper.gzip([`${target}/js`, `${target}/css`]);
+
 	from = `./src`;
 	to = `./package`;
 	await helper.copy(from, to)
