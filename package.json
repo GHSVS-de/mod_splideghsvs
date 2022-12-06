@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2022.09.12",
-	"versionCompare": "2022.08.15",
+	"version": "2022.12.04",
+	"versionCompare": "2022.09.12",
 	"update": {
 		"type": "module",
 		"folder": "",
@@ -77,7 +77,7 @@
     "update": "npm update --save-dev"
 	},
 	"dependencies": {
-		"@splidejs/splide": "^4.0.14"
+		"@splidejs/splide": "^4.1.4"
 	},
 	"devDependencies": {},
 	"browserslist": []
