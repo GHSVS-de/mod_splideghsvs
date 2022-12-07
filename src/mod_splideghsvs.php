@@ -12,9 +12,8 @@ if ($slides === false)
 	return;
 }
 
+// Lädt Moduleinstellungen mit Settings aus Form/config.xml.
 $config = SplideGhsvsHelper::getConfig($params);
-
-
 $wa = Factory::getDocument()->getWebAssetManager();
 $wr = $wa->getRegistry()->addExtensionRegistryFile('mod_splideghsvs');
 SplideGhsvsHelper::loadCss($params, $wa);
