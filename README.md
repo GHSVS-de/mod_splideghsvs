@@ -6,6 +6,16 @@
   - [Splide options](https://splidejs.com/guides/options/)
 - The module layouts are based on Bootstrap 5? That has not yet been decided.
 
+# Hint
+If you use Cassiopeia and you insert modules with loadmodule plugin, e.g. in articles, you need the additional CSS rule (or similar)
+
+```css
+.com-content-article ul.splide__list
+{
+	overflow: unset !important;
+}
+```
+
 -----------------------------------------------------
 
 # My personal build procedure (WSL 1, Debian, Win 10)
