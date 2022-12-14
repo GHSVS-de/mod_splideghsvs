@@ -1,5 +1,5 @@
 # This is only a very rudimentarily implemented extension.
-- Only 2 sliders implemented for 2 single individual sites.
+- Only 3 slider layouts implemented for 3 single individual sites.
 
 # mod_splideghsvs
 - Joomla slider based on Splidejs / splide JS library (https://github.com/Splidejs/splide).
