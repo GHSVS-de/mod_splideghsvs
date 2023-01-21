@@ -3,7 +3,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
-use Joomla\Module\SplideGhsvs\Site\Helper\SplideGhsvsHelper;
+use GHSVS\Module\SplideGhsvs\Site\Helper\SplideGhsvsHelper;
 
 $slides = SplideGhsvsHelper::getSlides($params);
 

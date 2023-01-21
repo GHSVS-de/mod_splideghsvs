@@ -3,7 +3,7 @@
 Rekursive Liste von Dateien in einem directory.
 */
 
-namespace Joomla\Module\SplideGhsvs\Site\Field;
+namespace GHSVS\Module\SplideGhsvs\Site\Field;
 
 \defined('_JEXEC') or die;
 

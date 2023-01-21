@@ -1,6 +1,6 @@
 <?php
 
-namespace Joomla\Module\SplideGhsvs\Site\Helper;
+namespace GHSVS\Module\SplideGhsvs\Site\Helper;
 
 \defined('_JEXEC') or die;
 
