@@ -3,7 +3,7 @@
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
 	"version": "2022.12.04",
-	"versionCompare": "2022.09.12",
+	"versionCompare": "2022.12.04",
 	"update": {
 		"type": "module",
 		"folder": "",
@@ -12,7 +12,7 @@
 		"targetplatform": [
 			"4.*"
 		],
-		"namespace": "Joomla\\Module\\SplideGhsvs"
+		"namespace": "GHSVS\\Module\\SplideGhsvs"
 	},
 	"releaseTxt": {
 		"title": "Joomla site module mod_splideghsvs",
@@ -30,7 +30,6 @@
 		"docsDE": "",
 		"docsEN": "",
 		"lastTests": [
-			"PHP 7.4",
 			"PHP 8.0",
 			"PHP 8.1",
 			"Joomla 4.2",
