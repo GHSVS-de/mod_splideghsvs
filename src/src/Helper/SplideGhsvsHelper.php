@@ -43,7 +43,7 @@ class SplideGhsvsHelper
 				$slide->height = $wurmInfos->attributes['height'];
 
 				// B\C
-				$check = ['link'];
+				$check = ['link', 'text', 'cssClass'];
 
 				foreach ($check as $checkKey)
 				{
@@ -51,7 +51,7 @@ class SplideGhsvsHelper
 						trim($slide->$checkKey) : '';
 				}
 
-				$check = ['headline', 'text'];
+				$check = ['headline'];
 
 				foreach ($check as $checkKey)
 				{

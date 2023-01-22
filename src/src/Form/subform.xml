@@ -14,4 +14,9 @@
 	<field name="link" type="text" default="" filter="trim"
 		label="MOD_SPLIDEGHSVS_LINK" />
 
+	<field name="text" type="textarea" default="" filter="safehtml"
+		label="MOD_SPLIDEGHSVS_TEXT" />
+
+	<field name="cssClass" type="text" default="" filter="trim"
+		label="MOD_SPLIDEGHSVS_CSSCLASS" />
 </form>
