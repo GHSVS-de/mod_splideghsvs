@@ -9,7 +9,7 @@
 		default="7000"
 		label="Interval (sec)"/>
 
-	<field name="autoplay" type="list" default="0" filter="integer"
+	<field name="autoplay" type="list" default="1" filter="integer"
 		label="autoplay"
 		description="Start slider automatically on load">
 		<option value="1">JYES</option>
@@ -26,7 +26,7 @@
 	<field name="gap" type="trim" default="0px" label="gap"
 		description="The gap between slides. The CSS format is acceptable, such as 1em or 5px. Do NOT use pure numbers, such as 0 or 5! Use 0px or 5px instead!"/>
 
-	<field name="arrows" type="list" default="1" filter="integer"
+	<field name="arrows" type="list" default="0" filter="integer"
 		label="arrows"
 		description="Show arrows for pagination">
 		<option value="1">JYES</option>
