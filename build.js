@@ -3,9 +3,9 @@ const path = require('path');
 
 /* Configure START */
 const pathBuildKram = path.resolve("../buildKramGhsvs");
-const updateXml = `${pathBuildKram}/build/update.xml`;
-const changelogXml = `${pathBuildKram}/build/changelog.xml`;
-const releaseTxt = `${pathBuildKram}/build/release.txt`;
+const updateXml = `${pathBuildKram}/build/update_no-changelog.xml`;
+// const changelogXml = `${pathBuildKram}/build/changelog.xml`;
+const releaseTxt = `${pathBuildKram}/build/release_no-changelog.txt`;
 /* Configure END */
 
 const replaceXml = require(`${pathBuildKram}/build/replaceXml.js`);
@@ -45,6 +45,8 @@ let to = "";
 		`./dist`
 	];
 	await helper.cleanOut(cleanOuts);
+
+	await helper.mkdir('./dist');
 
 	from = path.resolve(source);
 	versionSub = await helper.findVersionSubSimple (
@@ -89,15 +91,20 @@ let to = "";
 	await helper.copy(from, to)
 
 	// ### CREATE A joomla.asset.json - START
+	// Add asset entries for all css files.
 	// Makes loading via WAM easier.
 	to = 'joomla.asset.json';
 	console.log(pc.green(pc.bold(`Start build of ${to}.`)));
+
+	// Is already existing package/media/joomla.asset.json.
 	to = path.resolve(`${target}/${to}`);
+
+	// load it.
 	jsonObj = require(to);
 
 	from = path.resolve(`${target}/css/splide`);
 
-	// Collect css files. We don't need min.css because WAM loads what it wants.
+	// Collect css files. We don't need min.css in joomla.asset.json because WAM loads what it wants.
 	const regex = '\.css$';
 	const exclude = '\.min\.css$';
 	const collector = await helper.getFilesRecursive(
@@ -133,9 +140,9 @@ let to = "";
 
 	replaceXmlOptions.xmlFile = to;
 	await replaceXml.main(replaceXmlOptions);
-	// ### CREATE A joomla.asset.json - END
 
-	await helper.mkdir('./dist');
+	await helper.copy(to, `./dist/joomla.asset.json`)
+	// ### CREATE A joomla.asset.json - END
 
 	const zipFilename = `${name}-${version}_${versionSub}.zip`;
 
@@ -163,7 +170,7 @@ let to = "";
 	replaceXmlOptions.checksum = await helper._getChecksum(zipFilePath);
 
 	// Bei diesen werden zuerst Vorlagen nach dist/ kopiert und dort erst "replaced".
-	for (const file of [updateXml, changelogXml, releaseTxt])
+	for (const file of [updateXml, releaseTxt])
 	{
 		from = file;
 		to = `./dist/${path.win32.basename(file)}`;
