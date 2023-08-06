@@ -7,6 +7,8 @@ namespace GHSVS\Module\SplideGhsvs\Site\Helper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\Registry\Registry;
+use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\Utilities\ArrayHelper;
 
 class SplideGhsvsHelper
 {
@@ -15,7 +17,7 @@ class SplideGhsvsHelper
 	private static $name = 'mod_splideghsvs';
 
 	/**
-	 * Retrieve list of slide items from module params.
+	 * Retrieve list of slide items from module params. If mode=fotos.
 	 *
 	 * @param   \Joomla\Registry\Registry  &$params  module parameters
 	 *
@@ -69,6 +71,61 @@ class SplideGhsvsHelper
 		return false;
 	}
 
+	/**
+	 * Retrieve list of slide items from module params. If mode=modulePosition.
+	 *
+	 * @param   \Joomla\Registry\Registry  &$params  module parameters
+	 *
+	 * @return  object of objects or FALSE
+	 */
+	public static function getModules(&$params)
+	{
+		$modulePosition = $params->get('modulePosition', '');
+		$moduleOrdering = $params->get('moduleOrdering', 'default');
+
+		// ?? Mal sehen. Das betrifft die Einzel-Module, die gerendert werden.
+		$attribs = [
+			'style' => 'none',
+			'contentOnly' => true,
+			'layout' => 'kujmj4:boxen',
+		];
+
+		$output = [];
+		$modules = ModuleHelper::getModules($modulePosition);
+
+		foreach ($modules as $i => $module)
+		{
+			$tmp = new Registry($module->params);
+			$tmp->set('layout', 'default');
+			$module->params = $tmp->toString();
+			$contentOnly = trim(ModuleHelper::renderModule($module, $attribs));
+
+			if ($contentOnly)
+			{
+				$output[$i] = new \stdClass();
+				$output[$i]->contentOnly = $contentOnly;
+				$output[$i]->moduleId = $module->id;
+				$output[$i]->module = $module;
+			}
+		}
+
+		if ($output)
+		{
+			switch ($moduleOrdering)
+			{
+				case 'random':
+					shuffle($output);
+				break;
+				case 'idAsc':
+					$output = ArrayHelper::sortObjects($output, 'moduleId', 1);
+				break;
+				case 'idDes':
+					$output = ArrayHelper::sortObjects($output, 'moduleId', -1);
+				break;
+			}
+		}
+		return (empty($output) ? false : $output);
+	}
 	/**
 	 * Retrieve list of slide items from module params.
 	 *

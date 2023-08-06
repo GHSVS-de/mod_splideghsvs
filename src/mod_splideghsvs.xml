@@ -50,12 +50,35 @@
 			<fieldset name="createSlides"
 				label="MOD_SPLIDEGHSVS_CREATESLIDES">
 
+				<field name="modeSpacer" type="note"
+					class="alert alert-danger"
+					label="MOD_SPLIDEGHSVS_MODE"
+					description="MOD_SPLIDEGHSVS_MODE_DESC" showon="mode!:fotos"/>
+
+				<field name="mode" type="list" default="fotos" filter="string"
+					label="MOD_SPLIDEGHSVS_MODE">
+					<option value="fotos">FOTOS</option>
+					<option value="modulePosition">MODULEPOSITION</option>
+				</field>
+
+				<field name="modulePosition" type="text" default="" filter="trim"
+					label="MOD_SPLIDEGHSVS_MODULEPOSITION" showon="mode:modulePosition">
+				</field>
+
+				<field name="moduleOrdering" type="list" default="default" filter="string"
+					label="MOD_SPLIDEGHSVS_MODULEORDERING">
+					<option value="default">DEFAULT</option>
+					<option value="random">RANDOM</option>
+					<option value="idAsc">MODULE ID ASCENDING</option>
+					<option value="idDes">MODULE ID DESCENDING</option>
+				</field>
+
 			<field name="fotos" type="subform" min="1" max="100" multiple="true"
 				formsource="modules/mod_splideghsvs/src/Form/subform.xml"
 				layout="joomla.form.field.subform.repeatable" groupByFieldset="false"
 				label=""
 				hiddenLabel="true"
-				description="" />
+				description="" showon="mode:fotos"/>
 
 			</fieldset><!--/createSlides-->
 
@@ -65,7 +88,7 @@
 				<field name="themeSpacer" type="note"
 					class="alert alert-info"
 					label="MOD_SPLIDEGHSVS_THEME"
-					description="MOD_SPLIDEGHSVS_THEME_DESC"/>
+					description="MOD_SPLIDEGHSVS_THEME_DESC" />
 
 				<field name="theme" type="FilesRecursiveGhsvs"
 					default="splide-core.css"

@@ -5,7 +5,22 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
 use GHSVS\Module\SplideGhsvs\Site\Helper\SplideGhsvsHelper;
 
-$slides = SplideGhsvsHelper::getSlides($params);
+$mode = $params->get('mode', 'fotos');
+$slides = false;
+$modulePosition = '';
+
+if ($mode === 'fotos')
+{
+	$slides = SplideGhsvsHelper::getSlides($params);
+}
+else if ($mode === 'modulePosition')
+{
+	// Das muss sein, da ModuleHelper auch welche mit leerer Position einliest.
+	if ($modulePosition = trim($params->get('modulePosition', '')))
+	{
+		$slides = SplideGhsvsHelper::getModules($params);
+	}
+}
 
 if ($slides === false)
 {
