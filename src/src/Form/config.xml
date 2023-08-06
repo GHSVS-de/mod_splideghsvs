@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
 
-	<field name="speed" type="number" min="10" max="60000"
-		default="4000"
-		label="Speed (sec)"/>
-
-	<field name="interval" type="number" min="10" max="60000"
+	<field name="interval" type="number" min="10" max="120000"
 		default="7000"
-		label="Interval (sec)"/>
+		label="Interval (sec)"
+		description="Wait time until the next slide change" />
+
+	<field name="speed" type="number" min="10" max="60000"
+		default="800"
+		label="Speed (sec)"
+		description="Duration of a slide change" />
 
 	<field name="autoplay" type="list" default="1" filter="integer"
 		label="autoplay"
