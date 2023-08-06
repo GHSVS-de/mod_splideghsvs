@@ -56,6 +56,7 @@ let to = "";
 	console.log(pc.magenta(pc.bold(`versionSub identified as: "${versionSub}"`)));
 	replaceXmlOptions.versionSub = versionSub;
 
+	// Das sind zumeist leere Ordner.
 	from = './media';
 	to = target;
 	await helper.copy(from, to)
@@ -74,7 +75,7 @@ let to = "";
 	await helper.copy(from, to)
 	// ### JS. END
 
-	// ### SCSS. START
+	// ### SCSS. START. Auch, wenn da src/css steht, sind da nur scss-Dateien drin.
 	from = `${source}/src/css`;
 	to = `${target}/scss/splide`;
 	await helper.copy(from, to)
