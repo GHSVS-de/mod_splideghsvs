@@ -1,0 +1,53 @@
+{
+	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+	"name": "mod_splideghsvs",
+	"version": "2023.08.06",
+	"versionSub": "4.1.4",
+	"description": "Joomla site module. Slider based upon JavaScript library @splidejs/splide.",
+	"license": "GNU General Public License version 3 or later; see LICENSE.txt.",
+	"assets": [
+		{
+			"name": "mod_splideghsvs.core",
+			"type": "script",
+			"uri": "mod_splideghsvs/splide/splide.js",
+			"version": "4.1.4"
+		},
+		{
+			"name": "mod_splideghsvs.override.template",
+			"version": "2023.08.06",
+			"type": "style",
+			"uri": "mod_splideghsvs.css",
+			"weight": 500
+		},
+		{
+			"name": "mod_splideghsvs.splide-core",
+			"version": "4.1.4",
+			"type": "style",
+			"uri": "mod_splideghsvs/splide/splide-core.css"
+		},
+		{
+			"name": "mod_splideghsvs.splide",
+			"version": "4.1.4",
+			"type": "style",
+			"uri": "mod_splideghsvs/splide/splide.css"
+		},
+		{
+			"name": "mod_splideghsvs.themes.splide-default",
+			"version": "4.1.4",
+			"type": "style",
+			"uri": "mod_splideghsvs/splide/themes/splide-default.css"
+		},
+		{
+			"name": "mod_splideghsvs.themes.splide-sea-green",
+			"version": "4.1.4",
+			"type": "style",
+			"uri": "mod_splideghsvs/splide/themes/splide-sea-green.css"
+		},
+		{
+			"name": "mod_splideghsvs.themes.splide-skyblue",
+			"version": "4.1.4",
+			"type": "style",
+			"uri": "mod_splideghsvs/splide/themes/splide-skyblue.css"
+		}
+	]
+}
