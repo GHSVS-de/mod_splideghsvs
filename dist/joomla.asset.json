@@ -1,7 +1,7 @@
 {
 	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
 	"name": "mod_splideghsvs",
-	"version": "2023.09.23",
+	"version": "2023.09.24",
 	"versionSub": "4.1.4",
 	"description": "Joomla site module. Slider based upon JavaScript library @splidejs/splide.",
 	"license": "GNU General Public License version 3 or later; see LICENSE.txt.",
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "mod_splideghsvs.override.template",
-			"version": "2023.09.23",
+			"version": "2023.09.24",
 			"type": "style",
 			"uri": "mod_splideghsvs.css",
 			"weight": 500
