@@ -34,4 +34,7 @@
 		<option value="1">JYES</option>
 		<option value="0">JNO</option>
 	</field>
+
+	<field name="width" type="trim" default="" label="width"
+		description="The slider MAX width, accepting CSS formats such as 10em, 80vw, 65%, 100%, 650px and so on. Do NOT use pure numbers, such as 65 or 650! Leave empty for no maximum width."/>
 </form>
