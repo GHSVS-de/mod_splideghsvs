@@ -1,5 +1,5 @@
 # This is only a very rudimentarily implemented extension.
-- All implemented slider layouts are programmed for 6 single individual sites.
+- All module layouts were programmed for individual websites. Maybe there is one that works for you without any problems. Maybe!
 - Your job to fiddle around with custom overrides.
 
 # mod_splideghsvs
