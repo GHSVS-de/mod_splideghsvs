@@ -14,7 +14,9 @@
 			"4.[3456789]",
 			"5.*"
 		],
-		"namespace": "GHSVS\\Module\\SplideGhsvs"
+		"namespace": "GHSVS\\Module\\SplideGhsvs",
+		"xmlserverComment": "Der Grundpfad zu update.xml etc. Falls abweichend vom Default in replaceXml.",
+		"xmlserver": ""
 	},
 	"releaseTxt": {
 		"title": "Joomla site module mod_splideghsvs",
