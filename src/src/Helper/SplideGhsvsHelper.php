@@ -145,26 +145,6 @@ class SplideGhsvsHelper
 		return new Registry();
 	}
 
-	public static function getImageResizer()
-	{
-		$imageResizer = null;
-		$resizeFile = JPATH_PLUGINS . '/system/bs3ghsvs/Helper/ImgResizeCache.php';
-
-		if (is_file($resizeFile))
-		{
-			\JLoader::register('ImgResizeCache', $resizeFile);
-			\JLoader::register(
-				'Bs3ghsvsItem',
-				JPATH_PLUGINS . '/system/bs3ghsvs/Helper/ItemHelper.php'
-			);
-
-			// use default settings
-			$imageResizer = new \ImgResizeCache(new Registry);
-		}
-
-		return $imageResizer;
-	}
-
 	public static function loadCss(&$params, $wa)
 	{
 		if ($theme = $params->get('theme', 'splide-core.css'))
