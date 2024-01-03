@@ -1,0 +1,46 @@
+<!--MOD_SPLIDEGHSVS Version 2024.01.03 Target platform: 4.[3456789]-->
+	<update>
+		<name>MOD_SPLIDEGHSVS</name>
+		<description>Joomla site module. Slider based upon JavaScript library @splidejs/splide.</description>
+		<element>mod_splideghsvs</element>
+		<type>module</type>
+		<folder></folder>
+		<client>site</client>
+		<version>2024.01.03</version>
+		<infourl>https://github.com/GHSVS-de/mod_splideghsvs/releases/tag/2024.01.03</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/GHSVS-de/mod_splideghsvs/raw/2024.01.03/dist/mod_splideghsvs-2024.01.03_4.1.4.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>G@HService Berlin Neukölln, Volkmar Volli Schlothauer</maintainer>
+		<maintainerurl>https://ghsvs.de</maintainerurl>
+		<targetplatform name="joomla" version="4.[3456789]" />
+		<php_minimum>7.4.0</php_minimum>
+		<sha256>1e74371b6d26dacd73e57dc0448ffe1c41ca4976e9f0b9086880c4d6deda690b</sha256>
+	</update>
+<!--/MOD_SPLIDEGHSVS Version 2024.01.03 Target platform: 4.[3456789]-->
+<!--MOD_SPLIDEGHSVS Version 2024.01.03 Target platform: 5.*-->
+	<update>
+		<name>MOD_SPLIDEGHSVS</name>
+		<description>Joomla site module. Slider based upon JavaScript library @splidejs/splide.</description>
+		<element>mod_splideghsvs</element>
+		<type>module</type>
+		<folder></folder>
+		<client>site</client>
+		<version>2024.01.03</version>
+		<infourl>https://github.com/GHSVS-de/mod_splideghsvs/releases/tag/2024.01.03</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/GHSVS-de/mod_splideghsvs/raw/2024.01.03/dist/mod_splideghsvs-2024.01.03_4.1.4.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>G@HService Berlin Neukölln, Volkmar Volli Schlothauer</maintainer>
+		<maintainerurl>https://ghsvs.de</maintainerurl>
+		<targetplatform name="joomla" version="5.*" />
+		<php_minimum>7.4.0</php_minimum>
+		<sha256>1e74371b6d26dacd73e57dc0448ffe1c41ca4976e9f0b9086880c4d6deda690b</sha256>
+	</update>
+<!--/MOD_SPLIDEGHSVS Version 2024.01.03 Target platform: 5.*-->

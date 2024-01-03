@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" method="upgrade">
+	<name>MOD_SPLIDEGHSVS</name>
+	<author>G@HService Berlin Neukölln, Volkmar Volli Schlothauer</author>
+	<creationDate>2021-12-25</creationDate>
+	<copyright>(C) 2021, G@HService Berlin Neukölln, Volkmar Volli Schlothauer (ghsvs.de)</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt.</license>
+	<authorUrl>https://ghsvs.de</authorUrl>
+	<version>2024.01.03</version>
+	<description>MOD_SPLIDEGHSVS_XML_DESCRIPTION</description>
+
+	<updateservers><server type="extension" priority="1" name="MOD_SPLIDEGHSVS">https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_splideghsvs-update.xml</server></updateservers>
+
+	<infourl>https://github.com/GHSVS-de/mod_splideghsvs/releases/tag/2024.01.03</infourl>
+
+	<scriptfile>installerScript.php</scriptfile>
+	<minimumPhp>7.4.0</minimumPhp>
+	<maximumPhp></maximumPhp>
+	<minimumJoomla>4.3.0</minimumJoomla>
+	<maximumJoomla>5.9999.9999</maximumJoomla>
+	<allowDowngrades>1</allowDowngrades>
+
+	<files>
+		<filename module="mod_splideghsvs">mod_splideghsvs.php</filename>
+		<filename>installerScript.php</filename>
+		<filename>LICENSE.txt</filename>
+		<folder>language</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<media folder="media" destination="mod_splideghsvs">
+		<filename>LICENSE_splide.txt</filename>
+		<filename>joomla.asset.json</filename>
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>json</folder>
+		<folder>scss</folder>
+	</media>
+	<namespace path="src">GHSVS\Module\SplideGhsvs</namespace>
+	<config>
+		<fields name="params" addfieldpath="modules/mod_splideghsvs/src/Field" addfieldprefix="GHSVS\Module\SplideGhsvs\Site\Field">
+
+			<fieldset name="basic">
+
+			</fieldset><!--/basic-->
+
+			<fieldset name="createSlides"
+				label="MOD_SPLIDEGHSVS_CREATESLIDES">
+
+				<field name="modeSpacer" type="note"
+					class="alert alert-danger mb-0"
+					label="MOD_SPLIDEGHSVS_MODE"
+					description="MOD_SPLIDEGHSVS_MODE_DESC" showon="mode!:fotos"/>
+
+				<field name="mode" type="list" default="fotos" filter="string"
+					label="MOD_SPLIDEGHSVS_MODE">
+					<option value="fotos">FOTOS</option>
+					<option value="modulePosition">MODULEPOSITION</option>
+				</field>
+
+				<field name="modulePosition" type="text" default="" filter="trim"
+					label="MOD_SPLIDEGHSVS_MODULEPOSITION" showon="mode:modulePosition">
+				</field>
+
+				<field name="moduleOrdering" type="list" default="default" filter="string"
+					label="MOD_SPLIDEGHSVS_MODULEORDERING" showon="mode:modulePosition">
+					<option value="default">DEFAULT</option>
+					<option value="random">RANDOM</option>
+					<option value="idAsc">MODULE ID ASCENDING</option>
+					<option value="idDes">MODULE ID DESCENDING</option>
+				</field>
+
+				<field name="forceLayoutDefaultSpacer" type="note"
+					class="alert alert-danger mb-0 mt-0"
+					label="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT"
+					description="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT_DESC" showon="mode!:fotos"/>
+
+				<field name="forceLayoutDefault" type="list" default="1" filter="integer"
+					label="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT" showon="mode:modulePosition">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+			<field name="fotos" type="subform" min="1" max="100" multiple="true"
+				formsource="modules/mod_splideghsvs/src/Form/subform.xml"
+				layout="joomla.form.field.subform.repeatable" groupByFieldset="false"
+				label=""
+				hiddenLabel="true"
+				description="" showon="mode:fotos"/>
+
+			</fieldset><!--/createSlides-->
+
+			<fieldset name="sliderSettings"
+				label="MOD_SPLIDEGHSVS_SLIDERSETTINGS">
+
+				<field name="themeSpacer" type="note"
+					class="alert alert-info"
+					label="MOD_SPLIDEGHSVS_THEME"
+					description="MOD_SPLIDEGHSVS_THEME_DESC" />
+
+				<field name="theme" type="FilesRecursiveGhsvs"
+					default="splide-core.css"
+					label="MOD_SPLIDEGHSVS_THEME"
+					fileFilter="\.css$"
+					exclude="\.min\.css$"
+					hide_default="true"
+					hide_none="true"
+					stripext="false"
+					directory="media/mod_splideghsvs/css/splide">
+						<option value="0">JNONE</option>
+				</field>
+
+				<field name="configSpacer" type="note"
+					class="alert alert-info"
+					label="MOD_SPLIDEGHSVS_CONFIG"
+					description="MOD_SPLIDEGHSVS_CONFIG_DESC"/>
+
+				<field name="config" type="subform" min="1" max="1" multiple="false"
+					formsource="modules/mod_splideghsvs/src/Form/config.xml"
+					layout="joomla.form.field.subform.default" groupByFieldset="false"
+					label=""
+					hiddenLabel="true"
+					description="" />
+
+
+			</fieldset><!--/sliderSettings-->
+
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" class="custom-select"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field name="moduleclass_sfx" type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"/>
+
+				<field name="cache" type="list" default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL">
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field name="cache_time" type="number" default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"/>
+
+				<field name="cachemode" type="hidden" default="static">
+					<option value="static"></option>
+				</field>
+			</fieldset><!--/advanced-->
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,28 @@
+2024.01.03
+
+Joomla site module mod_splideghsvs 2024.01.03
+
+Joomla site module. Slider based upon JavaScript library @splidejs/splide.
+
+### Download
+[mod_splideghsvs-2024.01.03_4.1.4.zip](https://github.com/GHSVS-de/mod_splideghsvs/raw/2024.01.03/dist/mod_splideghsvs-2024.01.03_4.1.4.zip)
+
+### Joomla-Target-Platform(s)
+4.[3456789]<br>5.&ast;
+
+### For the interested ones
+- Bugfix via new setting "forceLayoutDefault" for experimental feature "MODULEPOSITION".
+- Deutsche Beschreibung:
+- English Description:
+- [Compare releases 2023.09.24...2024.01.03](https://github.com/GHSVS-de/mod_splideghsvs/compare/2023.09.24...2024.01.03)
+- minimumJoomla: 4.3.0
+- maximumJoomla: 5.9999.9999
+- minimumPhp: 7.4.0
+- maximumPhp:
+- Checksum: `<sha256>1e74371b6d26dacd73e57dc0448ffe1c41ca4976e9f0b9086880c4d6deda690b</sha256>`
+- Readme: https://github.com/GHSVS-de/mod_splideghsvs#readme
+- Updates XML: https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_splideghsvs-update.xml
+- Last tests: PHP 8.1<br>PHP 8.2<br>Joomla 4.4<br>Joomla 5.0
+- Language files: en-GB<br>de-DE
+- Requires:
+- Uses: https://github.com/Splidejs/splide
