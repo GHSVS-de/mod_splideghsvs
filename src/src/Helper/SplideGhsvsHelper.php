@@ -82,6 +82,7 @@ class SplideGhsvsHelper
 	{
 		$modulePosition = $params->get('modulePosition', '');
 		$moduleOrdering = $params->get('moduleOrdering', 'default');
+		$forceLayoutDefault = $params->get('forceLayoutDefault', 1);
 
 		// ?? Mal sehen. Das betrifft die Einzel-Module, die gerendert werden.
 		$attribs = [
@@ -96,7 +97,12 @@ class SplideGhsvsHelper
 		foreach ($modules as $i => $module)
 		{
 			$tmp = new Registry($module->params);
+
+			if ($forceLayoutDefault === 1)
+			{
 			$tmp->set('layout', 'default');
+			}
+
 			$module->params = $tmp->toString();
 			$contentOnly = trim(ModuleHelper::renderModule($module, $attribs));
 

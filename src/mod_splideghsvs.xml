@@ -49,7 +49,7 @@
 				label="MOD_SPLIDEGHSVS_CREATESLIDES">
 
 				<field name="modeSpacer" type="note"
-					class="alert alert-danger"
+					class="alert alert-danger mb-0"
 					label="MOD_SPLIDEGHSVS_MODE"
 					description="MOD_SPLIDEGHSVS_MODE_DESC" showon="mode!:fotos"/>
 
@@ -69,6 +69,17 @@
 					<option value="random">RANDOM</option>
 					<option value="idAsc">MODULE ID ASCENDING</option>
 					<option value="idDes">MODULE ID DESCENDING</option>
+				</field>
+
+				<field name="forceLayoutDefaultSpacer" type="note"
+					class="alert alert-danger mb-0 mt-0"
+					label="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT"
+					description="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT_DESC" showon="mode!:fotos"/>
+
+				<field name="forceLayoutDefault" type="list" default="1" filter="integer"
+					label="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT" showon="mode:modulePosition">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
 
 			<field name="fotos" type="subform" min="1" max="100" multiple="true"
