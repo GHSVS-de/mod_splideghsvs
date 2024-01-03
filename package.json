@@ -2,8 +2,8 @@
 	"name": "mod_splideghsvs",
 	"nameReal": "mod_splideghsvs",
 	"filename": "mod_splideghsvs",
-	"version": "2023.09.24",
-	"versionCompare": "2023.08.06",
+	"version": "2024.01.03",
+	"versionCompare": "2023.09.24",
 	"update": {
 		"infourl": "https://github.com/GHSVS-de/mod_splideghsvs{{thisRelease}}",
 		"type": "module",
@@ -36,12 +36,12 @@
 		"lastTests": [
 			"PHP 8.1",
 			"PHP 8.2",
-			"Joomla 4.3",
-			"Joomla 5.0.0-beta3-dev"
+			"Joomla 4.4",
+			"Joomla 5.0"
 		]
 	},
 	"minimumPhp": "7.4.0",
-	"maximumPhp": "8.99999.99999",
+	"maximumPhp": "",
 	"minimumJoomla": "4.3.0",
 	"maximumJoomla": "5.9999.9999",
 	"allowDowngrades": "1",
