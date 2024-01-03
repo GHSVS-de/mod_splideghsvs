@@ -3,12 +3,12 @@
 
 	<field name="interval" type="number" min="10" max="120000"
 		default="7000"
-		label="Interval (sec)"
+		label="Interval (milliseconds)"
 		description="Wait time until the next slide change" />
 
 	<field name="speed" type="number" min="10" max="60000"
 		default="800"
-		label="Speed (sec)"
+		label="Speed (milliseconds)"
 		description="Duration of a slide change" />
 
 	<field name="autoplay" type="list" default="1" filter="integer"
