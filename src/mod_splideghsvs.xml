@@ -42,7 +42,8 @@
 		<fields name="params" addfieldpath="modules/{{filename}}/src/Field"{{addfieldprefix}}>
 
 			<fieldset name="basic">
-
+				<field name="extensionVersion" type="Version" extensionVersion="{{version}}"
+					label="JVERSION"/>
 			</fieldset><!--/basic-->
 
 			<fieldset name="createSlides"
