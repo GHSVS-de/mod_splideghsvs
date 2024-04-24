@@ -21,6 +21,14 @@ else if ($mode === 'modulePosition')
 		$slides = SplideGhsvsHelper::getModules($params);
 	}
 }
+else if ($mode === 'customLoad')
+{
+	$slides = SplideGhsvsHelper::getSlidesForCustomLoad($params);
+}
+else if ($mode === 'fotos2')
+{
+	$slides = SplideGhsvsHelper::getSlides($params, 'fotos2');
+}
 
 if ($slides === false)
 {

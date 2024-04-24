@@ -50,14 +50,16 @@
 				label="MOD_SPLIDEGHSVS_CREATESLIDES">
 
 				<field name="modeSpacer" type="note"
-					class="alert alert-danger mb-0"
+					class="alert alert-info mb-0"
 					label="MOD_SPLIDEGHSVS_MODE"
-					description="MOD_SPLIDEGHSVS_MODE_DESC" showon="mode!:fotos"/>
+					description="MOD_SPLIDEGHSVS_MODE_DESC"/>
 
 				<field name="mode" type="list" default="fotos" filter="string"
 					label="MOD_SPLIDEGHSVS_MODE">
 					<option value="fotos">FOTOS</option>
 					<option value="modulePosition">MODULEPOSITION</option>
+					<option value="customLoad">customLoad</option>
+					<option value="fotos2">FOTOS2</option>
 				</field>
 
 				<field name="modulePosition" type="text" default="" filter="trim"
@@ -75,13 +77,17 @@
 				<field name="forceLayoutDefaultSpacer" type="note"
 					class="alert alert-danger mb-0 mt-0"
 					label="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT"
-					description="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT_DESC" showon="mode!:fotos"/>
+					description="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT_DESC" showon="mode:modulePosition"/>
 
 				<field name="forceLayoutDefault" type="list" default="1" filter="integer"
 					label="MOD_SPLIDEGHSVS_FORCELAYOUTDEFAULT" showon="mode:modulePosition">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
+
+				<field name="backgroundimage" type="media" default="" filter="string"
+					label="MOD_SPLIDEGHSVS_BACKGROUNDIMAGE"
+					preview="true" showon="mode:customLoad" />
 
 			<field name="fotos" type="subform" min="1" max="100" multiple="true"
 				formsource="modules/mod_splideghsvs/src/Form/subform.xml"
@@ -90,6 +96,12 @@
 				hiddenLabel="true"
 				description="" showon="mode:fotos"/>
 
+				<field name="fotos2" type="subform" min="1" max="10" multiple="true"
+					formsource="modules/mod_splideghsvs/src/Form/subform_fotos2.xml"
+					layout="joomla.form.field.subform.repeatable" groupByFieldset="false"
+					label=""
+					hiddenLabel="true"
+					description="" showon="mode:fotos2"/>
 			</fieldset><!--/createSlides-->
 
 			<fieldset name="sliderSettings"

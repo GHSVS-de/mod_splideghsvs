@@ -9,9 +9,13 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\Registry\Registry;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\Database\DatabaseAwareInterface;
+use Joomla\Database\DatabaseAwareTrait;
 
-class SplideGhsvsHelper
+class SplideGhsvsHelper implements DatabaseAwareInterface
 {
+	use DatabaseAwareTrait;
+
 	private static $loaded = [];
 
 	private static $name = 'mod_splideghsvs';
@@ -23,9 +27,9 @@ class SplideGhsvsHelper
 	 *
 	 * @return  object of objects or FALSE
 	 */
-	public static function getSlides(&$params)
+	public static function getSlides(&$params, $subform = 'foto')
 	{
-		$slides = $params->get('fotos');
+		$slides = $params->get($subform);
 
 		if (\is_object($slides) && \count(get_object_vars($slides)))
 		{
@@ -132,6 +136,12 @@ class SplideGhsvsHelper
 		}
 		return (empty($output) ? false : $output);
 	}
+
+	public static function getSlidesForCustomLoad(&$params)
+	{
+		return true;
+	}
+
 	/**
 	 * Retrieve slider configurations from module params.
 	 *
@@ -298,5 +308,16 @@ class SplideGhsvsHelper
 		}
 
 		return self::$loaded['mediaVersion'];
+	}
+
+	/*
+		Datenbank-Helferlein für mode customLoad.
+		Vorübergehende Krücke. Wenn ich mir z.B. ArticlesArchiveHelper.php ansehe, scheint
+		bei moderner Modulstruktur setDatabase() nicht nötig.
+	*/
+	public function getDBO()
+	{
+		$this->setDatabase(Factory::getDbo());
+		return $this->getDatabase();;
 	}
 }

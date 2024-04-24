@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+
+	<field name="foto" type="media" default="" filter="string"
+ 		label="MOD_SPLIDEGHSVS_FOTO"
+		preview="true" />
+
+	<field name="active" type="list" default="1" filter="integer"
+		label="MOD_SPLIDEGHSVS_ACTIVE">
+		<option value="0">JNO</option>
+		<option value="1">JYES</option>
+	</field>
+
+	<field name="link" type="text" default="" filter="trim"
+		label="MOD_SPLIDEGHSVS_LINK" />
+	<field name="linkText" type="text" default="" filter="trim"
+		label="MOD_SPLIDEGHSVS_LINKTEXT" />
+
+	<field name="link2" type="text" default="" filter="trim"
+		label="MOD_SPLIDEGHSVS_LINK2" />
+	<field name="linkText2" type="text" default="" filter="trim"
+		label="MOD_SPLIDEGHSVS_LINKTEXT2" />
+
+	<field name="text" type="textarea" default="" filter="safehtml"
+		label="MOD_SPLIDEGHSVS_TEXT" />
+
+	<field name="cssClass" type="text" default="" filter="trim"
+		label="MOD_SPLIDEGHSVS_CSSCLASS" />
+</form>
