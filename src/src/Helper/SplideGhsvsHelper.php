@@ -133,11 +133,11 @@ class SplideGhsvsHelper
 		return (empty($output) ? false : $output);
 	}
 	/**
-	 * Retrieve list of slide items from module params.
+	 * Retrieve slider configurations from module params.
 	 *
 	 * @param   \Joomla\Registry\Registry  &$params  module parameters
 	 *
-	 * @return  object of objects or FALSE
+	 * @return  Registry object
 	 */
 	public static function getConfig(&$params)
 	{
